@@ -1,0 +1,38 @@
+h1 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: black;
+    color: lightskyblue;
+    text-align: center;
+    font-weight: 400;
+}
+
+li {
+    font-family: 'Monaco', sans-serif;
+}
+
+.description {
+    font-style: italic;
+    font-size: 22px;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.banana {
+    background-color: yellow;
+    color: black;
+}
+
+.mac {
+    background-color: red;
+    color: gold;
+}
+
+.smoothie {
+    background-color: palevioletred;
+    color: blueviolet;
+
+}
