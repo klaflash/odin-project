@@ -124,8 +124,70 @@ li {
     height: 150px;
 }
 
-.column .text {
-
+.quote {
+    display: flex;
+    background-color: #e5e7eb;
+    margin-top: 100px;
+    justify-content: center;
 }
 
+.quote .content {
+    display: flex;
+    flex-direction: column;
+    width: 750px;
+    padding-top: 75px;
+    padding-bottom: 60px;
+}
+
+.quote .content .message {
+    font-size: 36px;
+    font-weight: 100;
+    color: #1f2937;
+    font-style: italic;
+}
+
+.author {
+    align-self: flex-end;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.footer {
+    background-color: #1f2937;
+    color: #cfcfcf;
+    text-align: center;
+    padding: 10px;
+}
+
+.action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3882f6;
+    border-radius: 10px;
+    margin: 100px;
+    margin-left: 150px;
+    margin-right: 150px;
+    gap: 200px;
+}
+
+.action .content {
+    display: flex;
+    flex-direction: column;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.action .button {
+    border: 2px solid white;
+}
+
+.action .content .heading {
+    font-size: 24px;
+}
+
+.action .content .text {
+    font-size: 18px;
+    color: #e5e7eb;
+}
 
