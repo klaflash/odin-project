@@ -1,6 +1,7 @@
 var userPoints = 0;
 var computerPoints = 0;
 var draws = 0;
+var endMatch = false;
 
 //randomly return Rock, Paper, or Scissors
 function computerPlay() {
@@ -25,10 +26,10 @@ function playRound(playerSelection, computerSelection) {
     if (playerSelection.toLowerCase() === "rock") {
         if (computerSelection === "paper") {
             computerPoints++;
-            return "You Lose! Paper beats Rock";
+            return "Paper beats Rock";
         } else if (computerSelection === "scissors") {
             userPoints++;
-            return "You Win! Rock beats Scissors";
+            return "Rock beats Scissors";
         }
     }
 
@@ -36,10 +37,10 @@ function playRound(playerSelection, computerSelection) {
 
         if (computerSelection === "scissors") {
             computerPoints++;
-            return "You Lose! Scissors beats Paper";
+            return "Scissors beats Paper";
         } else if (computerSelection === "rock") {
             userPoints++;
-            return "You Win! Paper beats Rock";
+            return "Paper beats Rock";
         }
     }
 
@@ -47,32 +48,71 @@ function playRound(playerSelection, computerSelection) {
 
         if (computerSelection === "paper") {
             userPoints++;
-            return "You Win! Scissors beats Paper";
+            return "Scissors beats Paper";
         } else if (computerSelection === "rock") {
             computerPoints++;
-            return "You Loose! Rock beats Scissors";
+            return "Rock beats Scissors";
+        }
+    }
+    return;
+}
+
+function game() {
+
+    const update = document.querySelector('.update');
+
+    function clickRock() {
+        if (!endMatch) {
+            update.style.display = '';
+            update.textContent = playRound("rock", computerPlay());
+            checkScore();
         }
     }
 
-    return "Error. Please type rock, paper, or scissors."
+    const rock = document.querySelector('.rock');
+    rock.addEventListener('click', clickRock);
+
+    function clickPaper() {
+        if (!endMatch) {
+            update.style.display = '';
+            update.textContent = playRound("paper", computerPlay());
+            checkScore();
+        }
+    }
+
+    const paper = document.querySelector('.paper');
+    paper.addEventListener('click', clickPaper);
+
+    function clickScissors() {
+        if (!endMatch) {
+            update.style.display = '';
+            update.textContent = playRound("scissors", computerPlay());
+            checkScore();
+        }
+    }
+
+    const scissors = document.querySelector('.scissors');
+    scissors.addEventListener('click', clickScissors);
 }
 
-//play a 5 round game
-function game() {
+function checkScore() {
 
-    for (let i = 1; i <= 5; i++) {
-        console.log(`Game ${i}: ${playRound(prompt("Please type rock, paper, or scissors."), computerPlay())}`);
+    const div = document.querySelector('.score');
+    div.textContent = `Score: ${userPoints} - ${computerPoints} - ${draws}`
+
+    if (userPoints === 5 || computerPoints === 5) {
+        const final = document.querySelector('.final');
+        document.querySelector('.reset').style.display = '';
+        
+        if (userPoints > computerPoints) {
+            final.textContent = ('You won! 🏆');
+        } else if (computerPoints > userPoints) {
+            final.textContent = ('Sorry, you lost.');
+        }
+
+        endMatch = true;
     }
 
-    console.log(`Your record after 5 games: ${userPoints}-${computerPoints}-${draws}.`);
-
-    if (userPoints > computerPoints) {
-        console.log("You won!");
-    } else if (computerPoints > userPoints) {
-        console.log("Sorry, you lost.")
-    } else {
-        console.log("Draw");
-    }
 }
 
 game();

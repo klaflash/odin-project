@@ -3,9 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./game.js" defer></script>
     <title>Rock Paper Scissors</title>
 </head>
 <body>
-    <script src="./game.js"></script>
+    <button class="rock">Rock 🪨</button>
+    <button class="paper">Paper 📄</button>
+    <button class="scissors">Scissors ✂</button>
+
+    <div class="update" style="display: none;"></div>
+
+    <div class="score">Score: 0 - 0 - 0</div>
+    <div class="final"></div>
+    <button style="display: none;" class="reset" onClick="window.location.reload()">Reset 🔄</button>
+
+    
+
 </body>
 </html>
