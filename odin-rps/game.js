@@ -63,7 +63,7 @@ function game() {
 
     function clickRock() {
         if (!endMatch) {
-            update.style.display = '';
+            update.style.color = '#1e1e20';
             update.textContent = playRound("rock", computerPlay());
             checkScore();
         }
@@ -74,7 +74,7 @@ function game() {
 
     function clickPaper() {
         if (!endMatch) {
-            update.style.display = '';
+            update.style.color = '#1e1e20';
             update.textContent = playRound("paper", computerPlay());
             checkScore();
         }
@@ -85,7 +85,7 @@ function game() {
 
     function clickScissors() {
         if (!endMatch) {
-            update.style.display = '';
+            update.style.color = '#1e1e20';
             update.textContent = playRound("scissors", computerPlay());
             checkScore();
         }
@@ -98,7 +98,11 @@ function game() {
 function checkScore() {
 
     const div = document.querySelector('.score');
-    div.textContent = `Score: ${userPoints} - ${computerPoints} - ${draws}`
+    div.textContent = `Score: ${userPoints} - ${computerPoints} - ${draws}`;
+
+    const divTwo = document.querySelector('.score-two');
+    divTwo.textContent = `Score: ${userPoints} - ${computerPoints} - ${draws}`;
+    
 
     if (userPoints === 5 || computerPoints === 5) {
         const final = document.querySelector('.final');
