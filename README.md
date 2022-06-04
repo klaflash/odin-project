@@ -1,5 +1,6 @@
 # odin-project
 Coding projects from The Odin Project JavaScript courses
+<br/>
 *For proper functionality please view all links in Google Chrome with JavaScript enabled*
 <br/>
 <br/>
