@@ -3,21 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
     <script src="./game.js" defer></script>
     <title>Rock Paper Scissors</title>
 </head>
 <body>
-    <button class="rock">Rock 🪨</button>
-    <button class="paper">Paper 📄</button>
-    <button class="scissors">Scissors ✂</button>
 
-    <div class="update" style="display: none;"></div>
+    <div class="card">
+        <div class="big">Rock. Paper.</div>
+        <div class="big">Scissors.</div>
+        <div class="big colorful">Shoot --></div>
 
-    <div class="score">Score: 0 - 0 - 0</div>
-    <div class="final"></div>
-    <button style="display: none;" class="reset" onClick="window.location.reload()">Reset 🔄</button>
+        <div class="right-side">
 
+            <div class="choices">
+                <button class="rock">Rock 🪨</button>
+                <button class="paper">Paper 📄</button>
+                <button class="scissors">Scissors ✂</button>
+            </div> 
+
+            <div class="update" style="display: none;"></div>
+        </div>
+
+        <div class="credit">Copyright © 2022 Kyle Laflash. Inspired by Apple Inc.</div>
+    </div>
     
+        
 
+    <div class="footer">
+        <div class="score">Score: 0 - 0 - 0</div>
+        <div class="final"></div>
+        <button style="display: none;" class="reset" onClick="window.location.reload()">Reset 🔄</button>
+    </div>
 </body>
 </html>
