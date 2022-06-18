@@ -8,12 +8,51 @@
     <title>Etch-A-Sketch</title>
 </head>
 <body>
-
-    <div class="container">
-        <div class="squares"></div>
+    <div class="header">
+        <div cl>MAGIC</div>
+        <h1>Etch A Sketch®</h1>
+        <div>SCREEN</div>
+        <button type="submit" class="btn" onclick="openSettings()">
+            <img src="./img/gear.png" height="50px" width="50px">
+        </button>
     </div>
-    <input type="text" placeholder="Board Size" value="16" onchange="changeSize(this.value)"/>
-    <button>Set size</button>
+    <div class="screen">
+        <div class="container">
+            <div class="squares"></div>
+        </div>
+    </div>
+
+    <div class="settings" id="settings">
+        <h2>Settings</h2>
+
+        <div class="line-one">
+            <span>Board Size:</span>
+            <input type="text" placeholder="Board Size" value="100" onchange="changeSize(this.value)"/>
+        </div>
+
+        <h3>Color</h3>
+        <div class="line-two">
+            <button class="default" onclick="changeColor('#585b5a')">Default</button>
+            <button class="rainbow" onclick="changeColor('random')">Rainbow</button>
+            <button class="eraser" onclick="changeColor('#bfc2c3')">Eraser</button>
+            <span>Custom:</span>
+            <input type="text" placeholder="BGB value" value="#585b5a" onchange="changeColor(this.value)"/>
+        </div>
+    
+        <div class="line-three">
+            <button class="clear" onclick="reset()">Clear Canvas</button>
+            <button onclick="closeSettings()">Save Changes</button>
+        </div>
+       
+        
+    </div>
+    
+
+    <div class="footer">
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+    
     
 </body>
 </html>

@@ -1,6 +1,135 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .container {
     display: grid;
-    width: 500px;
-    height: 500px;
-    border: 2px solid red;
+    width: 900px;
+    height: 600px;
+}
+
+body {
+    background-image: linear-gradient(to right, #b7161c 0%, #f0242b 25%, #f0242b 51%, #b7161c 100%);
+}
+
+.screen {
+    display: flex;
+    justify-content: center;
+}
+
+.header {
+    color: #cca67b;
+    font-size: 24px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-style: italic;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    align-items: center;
+    margin-left: 380px;
+}
+
+h1 {
+    font-size: 60px;
+    font-family: Luminari, fantasy;
+    font-style: normal;
+    font-weight: 300;
+}
+
+.btn {
+    cursor: pointer;
+    font-size: 50px;
+    margin-left: auto;
+    margin-right: 10px;
+    background: transparent;
+    border: none;
+}
+
+.dot {
+    height: 125px;
+    width: 125px;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 50px;
+}
+
+.settings {
+    width: 600px;
+    background: #fff;
+    border-radius: 6px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    text-align: center;
+    padding: 30px;
+    visibility: hidden;
+    transition: transform 0.4s, top 0.4s;
+}
+
+.open-settings {
+    visibility: visible;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.settings button {
+    padding: 5px;
+}
+
+.line-one {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.line-two {
+    margin-top: 10px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.line-three {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+h2 {
+    font-size: 40px;
+}
+
+.clear {
+    background-color: red;
+}
+
+.default {
+    background-color: #585b5a;
+    color: white;
+}
+
+.rainbow {
+    background: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,154,0,1) 10%, rgba(208,222,33,1) 20%, rgba(79,220,74,1) 30%, rgba(63,218,216,1) 40%, rgba(47,201,226,1) 50%, rgba(28,127,238,1) 60%, rgba(95,21,242,1) 70%, rgba(186,12,248,1) 80%, rgba(251,7,217,1) 90%, rgba(255,0,0,1) 100%);
+    color: white;
+}
+
+.eraser {
+    background-color: #bfc2c3;
+}
+
+button {
+    cursor: pointer;
 }
