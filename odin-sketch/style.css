@@ -7,7 +7,7 @@
 .container {
     display: grid;
     width: 900px;
-    height: 600px;
+    height: 580px;
 }
 
 body {
@@ -62,6 +62,8 @@ h1 {
     margin-left: 100px;
     margin-right: 100px;
     margin-bottom: 50px;
+    color: #cca67b;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .settings {
@@ -132,4 +134,23 @@ h2 {
 
 button {
     cursor: pointer;
+}
+
+.instructions {
+    margin-top: 10px;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: #cca67b;
+}
+
+.middle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
