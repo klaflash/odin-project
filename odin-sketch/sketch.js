@@ -16,7 +16,7 @@ function fillBoard(size) {
     }   
 }
 
-fillBoard(100);
+fillBoard(120);
 
 function changeSize(size) {
     if (size < 2 || size > 200) {
