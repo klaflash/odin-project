@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.calc {
+    height: 40rem;
+    width: 30rem;
+    background-color: black;
+    display: grid;
+    gap: 1rem;
+
+    grid-template-columns: repeat(4, 1fr);
+}
+
+button {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.screen {
+    background-color: beige;
+    grid-column: span 4 / auto;
+}
