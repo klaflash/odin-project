@@ -78,6 +78,7 @@ function populate(num) {
             memory = '';
             operator = '+';
             disableOperator = true;
+            allowNegative = true;
         }
     } else if (num === '-' && displayValue != '') {
         if (!disableOperator || allowNegative) {
@@ -129,6 +130,9 @@ function populate(num) {
         document.querySelector('.screen').textContent = `${displayValue}${num}`;
         displayValue = displayValue + `${String(num)}`;
         memory = memory + `${String(num)}`;
+        if (operator != '') {
+            allowNegative = false;
+        }
     }
     
 }
