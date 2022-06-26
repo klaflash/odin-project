@@ -153,10 +153,7 @@ function populate(num) {
     
 }
 
-document.querySelector('.zero').addEventListener('click', () => {
-    document.querySelector('.zero').
-    populate(0)}
-    );
+document.querySelector('.zero').addEventListener('click', () => {populate(0)});
 document.querySelector('.one').addEventListener('click', () => {populate(1)});
 document.querySelector('.two').addEventListener('click', () => {populate(2)});
 document.querySelector('.three').addEventListener('click', () => {populate(3)});
