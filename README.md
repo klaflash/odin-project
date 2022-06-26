@@ -5,6 +5,11 @@ Coding projects from The Odin Project JavaScript courses
 <br/>
 <br/>
 
+## 📁 [odin-calc](https://klaflash.github.io/odin-project/odin-calc)
+Phoenix Suns themed basic calculator designed to look like a mechanical numpad.
+<br/>
+<br/>
+
 ## 📁 [odin-sketch](https://klaflash.github.io/odin-project/odin-sketch)
 Digital Etch-A-Sketch drawing tool.
 <br/>
