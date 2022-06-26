@@ -49,6 +49,7 @@ let operandTwo;
 let operator;
 let disableOperator = false;
 let allowNegative = false;
+let allowDecimal = true;
 
 function populate(num) {
 
@@ -79,6 +80,7 @@ function populate(num) {
             operator = '+';
             disableOperator = true;
             allowNegative = true;
+            allowDecimal = true;
         }
     } else if (num === '-' && displayValue != '') {
         if (!disableOperator || allowNegative) {
@@ -92,6 +94,7 @@ function populate(num) {
                 operandOne = memory;
                 memory = '';
                 operator = '-';
+                allowDecimal = true;
             }
             disableOperator = true;
 
@@ -105,6 +108,7 @@ function populate(num) {
             operator = '/';
             disableOperator = true;
             allowNegative = true;
+            allowDecimal = true;
         }
     } else if (num === 'x') {
         if (!disableOperator) {
@@ -115,6 +119,7 @@ function populate(num) {
             operator = 'x';
             disableOperator = true;
             allowNegative = true;
+            allowDecimal = true;
         }
     } else if (num === '=') {
         operandTwo = memory;
@@ -126,18 +131,32 @@ function populate(num) {
         operandTwo = '';
         operator = '';
         disableOperator = false;
+        allowDecimal = true;
     } else {
-        document.querySelector('.screen').textContent = `${displayValue}${num}`;
-        displayValue = displayValue + `${String(num)}`;
-        memory = memory + `${String(num)}`;
-        if (operator != '') {
-            allowNegative = false;
+        if (num === '.' && allowDecimal) {
+            document.querySelector('.screen').textContent = `${displayValue}${num}`;
+            displayValue = displayValue + `${String(num)}`;
+            memory = memory + `${String(num)}`;
+            if (operator != '') {
+                allowNegative = false;
+            }
+            allowDecimal = false;
+        } else if (num != '.') {
+            document.querySelector('.screen').textContent = `${displayValue}${num}`;
+            displayValue = displayValue + `${String(num)}`;
+            memory = memory + `${String(num)}`;
+            if (operator != '') {
+                allowNegative = false;
+            }
         }
     }
     
 }
 
-document.querySelector('.zero').addEventListener('click', () => {populate(0)});
+document.querySelector('.zero').addEventListener('click', () => {
+    document.querySelector('.zero').
+    populate(0)}
+    );
 document.querySelector('.one').addEventListener('click', () => {populate(1)});
 document.querySelector('.two').addEventListener('click', () => {populate(2)});
 document.querySelector('.three').addEventListener('click', () => {populate(3)});

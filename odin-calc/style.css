@@ -31,6 +31,19 @@ button {
     cursor: pointer;
 }
 
+button:focus {
+    animation: press 0.5s linear forwards
+}
+
+@keyframes press {
+    50% {
+        transform: perspective(500px) translateZ(-40px);
+    }
+    100% {
+        transform: perspective(500px) translateZ(0px);
+    } 
+}
+
 .screen {
     background-color: rgba(220, 220, 220);
     border: 7px inset rgb(189, 188, 188);
