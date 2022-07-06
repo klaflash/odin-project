@@ -2,6 +2,72 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Oxygen, serif;
-    font-size: 20px;
+    font-family: Orbitron, serif;
+    font-size: 13px;
+}
+
+body {
+    background-color: rgba(76, 0, 253);
+}
+
+img {
+    width: 100vw;
+    max-height: 100vh;
+    height: auto;
+}
+
+.card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+    justify-content: center;
+    align-items: center;
+    margin: 20vh 25vw 20vh 25vw;
+    border-radius: 20px;
+    box-shadow: 0 0 1rem 1px rgba(0, 0, 0, 0.25);
+    background-color: rgba(225, 225, 225, 0.10);
+    backdrop-filter: blur(15px);
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    row-gap: 25px;
+    column-gap: 100px;
+}
+
+input, button {
+    background-color: transparent;
+    border: 1.5px inset rgb(141, 138, 138);
+    border-radius: 8px;
+    box-shadow: 0 0 0.5rem 0.5px rgba(0, 0, 0, 0.25);
+    width: 200px;
+    height: 30px;
+}
+
+button {
+    border: 1.5px outset rgb(26, 26, 26); 
+}
+
+.button-container {
+    grid-column: span 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-family: Orbitron, sans-serif;
+    font-size: 40px;
 }
