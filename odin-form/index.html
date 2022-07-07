@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oxygen">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron">
     <link rel="stylesheet" href="./style.css">
+    <script src="./matching.js" defer></script>
     <title>Form</title>
 </head>
 <body>
@@ -37,12 +38,12 @@
                 
                 <div class="field">
                     <label for="password">Password</label>
-                    <input type="password" id="password">
+                    <input type="password" id="password" name="password" onchange="onChange()">
                 </div>
                 
                 <div class="field">
                     <label for="confirm-password">Confirm Password</label>
-                    <input type="password" id="confirm-password">
+                    <input type="password" id="confirm-password" name="confirm" onchange="onChange()">
                 </div>
 
                 <div class="field button-container">
