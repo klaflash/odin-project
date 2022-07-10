@@ -42,6 +42,13 @@
     grid-column: 2 / 3;
     grid-row: 2 / 3;
     background-color: #030303;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 1.5fr 1fr;
+    color: white;
+    padding-left: 15px;
+    padding-right: 25px;
+    padding-top: 25px;
 }
 
 .icons {
@@ -170,4 +177,64 @@ li {
     padding-right: 30px;
     border-radius: 20px;
     background-color: #212327;
+}
+
+.projects {
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+}
+
+.announcements {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    font-size: 14px;
+}
+
+.trending {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    font-size: 14px;
+}
+
+.group {
+    background-color: #1a1a1b;
+    height: 80%;
+    margin-right: 15px;
+    margin-top: 10px;
+    border-radius: 10px;
+    padding: 25px;
+    padding-top: 25px;
+    display: grid;
+}
+
+.announce-message {
+    color: rgb(143, 143, 143);
+    font-size: 12px;
+    padding-bottom: 10px;
+}
+
+.announce-message.one, .announce-message.two {
+    border-bottom: 0.5px solid rgba(172, 172, 172, 0.685);
+}
+
+.row {
+    display: flex;
+    gap: 20px;
+    font-size: 12px;
+    padding-bottom: 10px;
+    align-items: center;
+}
+
+.stack {
+    display: flex;
+    flex-direction: column;
+}
+
+.description {
+    color: rgb(143, 143, 143);
+}
+
+.trending-icon {
+    height: 30px;
+    width: 30px;
 }
