@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr 5fr;
+    height: 100vh;
+}
+
+.header {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    background-color: #1a1a1b;
+}
+
+.sidebar {
+    grid-column: 1 / 2;
+    grid-row: span 2;
+    background-color: #1d9cef;
+}
+
+.content {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    background-color: #030303;
+}
