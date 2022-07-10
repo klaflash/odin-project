@@ -2,11 +2,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Roboto, sans-serif;
 }
 
 .container {
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 1fr 5fr;
     grid-template-rows: 1fr 5fr;
     height: 100vh;
 }
@@ -21,10 +22,46 @@
     grid-column: 1 / 2;
     grid-row: span 2;
     background-color: #1d9cef;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    padding-left: 30px;
+    padding-top: 30px;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
 }
 
 .content {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
     background-color: #030303;
+}
+
+.icons {
+    display: grid;
+    grid-template-rows: 6rem repeat(5, 3rem) 6rem repeat(3, 3rem);
+}
+
+.labels {
+    display: grid;
+    grid-template-rows: 6rem repeat(5, 3rem) 6rem repeat(3, 3rem);
+}
+
+li {
+    list-style-type: none;
+}
+
+.home, .profile, .messages, .history, .tasks,
+.groups, .settings, .support, .privacy, .logo {
+    fill: white;
+}
+
+.title {
+    margin-top: 7px;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.logo {
+    margin-left: -8px;
 }
