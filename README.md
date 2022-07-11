@@ -5,6 +5,11 @@ Coding projects from The Odin Project JavaScript courses
 <br/>
 <br/>
 
+## 📁 [odin-dashboard](https://klaflash.github.io/odin-project/odin-dashboard)
+Mock-up of a dashboard for a social media website. 
+<br/>
+<br/>
+
 ## 📁 [odin-form](https://klaflash.github.io/odin-project/odin-form)
 Account sign up HTML form with passoword matching, phone number, and email constraints. 
 <br/>
