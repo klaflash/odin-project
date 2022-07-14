@@ -14,9 +14,9 @@ myLibrary.push(meditations);
 Book.prototype.info = function() {
 
     if (this.read == true) {
-        return `${this.title} by ${this.author}, ${this.pages} pages, already read, ${this.rating} stars`;
+        return `${this.title} by ${this.author}, ${this.pages} pages, ${this.rating} stars`;
     } else {
-        return `${this.title} by ${this.author}, ${this.pages} pages, not read yet`;
+        return `${this.title} by ${this.author}, ${this.pages} pages`;
     }
 
 }
@@ -49,16 +49,31 @@ function createBook(book, index) {
     remove.textContent = 'X';
     remove.setAttribute('id', 'delete');
 
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.name = 'read-status';
+    checkbox.value = 'on';
+    checkbox.id = 'read-id';
+
+    if (book.read === true) {
+        checkbox.checked = 'true';
+    }
+
+    const label = document.createElement('label');
+    label.htmlFor = 'read-id';
+    label.appendChild(document.createTextNode('Read?'));
+
     tag.appendChild(text);
     tag.appendChild(remove);
+    tag.appendChild(label);
+    tag.appendChild(checkbox);
+    
 
     tag.style.cssText = "display:flex;justify-content:center;align-items:center;background-color:grey;width:15vw;height:20vw;margin:10px;"
 
     remove.addEventListener('click', function() {
         removeBook(index);
     });
-
-
 
     const element = document.querySelector('.container');
     element.appendChild(tag);
