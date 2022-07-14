@@ -5,6 +5,11 @@ Coding projects from The Odin Project JavaScript courses
 <br/>
 <br/>
 
+## 📁 [odin-library](https://klaflash.github.io/odin-project/odin-library)
+Simple library where books can be added and removed;
+<br/>
+<br/>
+
 ## 📁 [odin-dashboard](https://klaflash.github.io/odin-project/odin-dashboard)
 Mock-up of a dashboard for a social media website. 
 <br/>
