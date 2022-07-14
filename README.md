@@ -6,7 +6,7 @@ Coding projects from The Odin Project JavaScript courses
 <br/>
 
 ## 📁 [odin-library](https://klaflash.github.io/odin-project/odin-library)
-Simple library where books can be added and removed;
+Simple library where books can be added and removed.
 <br/>
 <br/>
 
