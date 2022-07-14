@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab">
     <script src="./library.js" defer></script>
     <link rel="stylesheet" href="./style.css">
     <title>Library</title>
 </head>
 <body>
 
-    <div>Library</div>
-
-    <button id="new-book">New Book</button>
-
+    <div class="header">
+        <div class="title">Library</div>
+        <button id="new-book">New Book</button>
+    </div>
+    
     <div class="popup">
         <div class="popup-content">
             <button id="close-popup">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M6.4 19 5 17.6l5.6-5.6L5 6.4 6.4 5l5.6 5.6L17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6Z"/></svg>
             </button>
-            <div>Add a new book</div>
             <label for="title">Title</label>
             <input id="title" type="text">
 

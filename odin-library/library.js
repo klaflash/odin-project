@@ -8,8 +8,12 @@ function Book(title, author, pages, read, rating) {
     this.rating = rating;
 }
 
-const meditations = new Book('Mediations', 'M.A.', 350, true, 4);
+const meditations = new Book('Mediations', 'Marcus Aurelius', 191, true, 4);
+const super_ai = new Book('Superintelligence', 'Nick Bostrom', 353,false,5);
+const restaurant = new Book('The Restaurant at the End of the Universe', 'Douglas Adams', 255, true, 5);
 myLibrary.push(meditations);
+myLibrary.push(super_ai);
+myLibrary.push(restaurant);
 
 Book.prototype.info = function() {
 
@@ -44,7 +48,19 @@ display();
 function createBook(book, index) {
 
     const tag = document.createElement('div');
-    const text = document.createTextNode(book.info());
+
+    const title_div = document.createElement('div');
+    const author_div = document.createElement('div');
+
+    const title = document.createTextNode(book.title);
+    const author = document.createTextNode(book.author);
+
+    title_div.appendChild(title);
+    author_div.appendChild(author);
+
+    const footer = document.createTextNode(book.pages + ' pages');
+    const footer_div = document.createElement('div');
+
     const remove = document.createElement('button');
     remove.textContent = 'X';
     remove.setAttribute('id', 'delete');
@@ -55,21 +71,51 @@ function createBook(book, index) {
     checkbox.value = 'on';
     checkbox.id = 'read-id';
 
-    if (book.read === true) {
-        checkbox.checked = 'true';
-    }
+    
 
     const label = document.createElement('label');
     label.htmlFor = 'read-id';
     label.appendChild(document.createTextNode('Read?'));
 
-    tag.appendChild(text);
-    tag.appendChild(remove);
-    tag.appendChild(label);
-    tag.appendChild(checkbox);
-    
+    const group = document.createElement('div');
+    group.appendChild(label);
+    group.appendChild(checkbox);
 
-    tag.style.cssText = "display:flex;justify-content:center;align-items:center;background-color:grey;width:15vw;height:20vw;margin:10px;"
+    footer_div.appendChild(group);
+    footer_div.appendChild(footer);
+
+
+    tag.appendChild(remove);
+    tag.appendChild(title_div);
+    tag.appendChild(author_div);
+    tag.appendChild(footer_div);
+
+    const outside_div = document.createElement('div');
+    const outside = document.createTextNode(book.rating + '/5 Stars');
+    outside_div.appendChild(outside);
+
+    const blank_div = document.createElement('div');
+
+    if (book.read === true) {
+        checkbox.checked = 'true';
+        tag.appendChild(outside_div);
+    } else {
+        tag.appendChild(blank_div);
+    }
+
+    tag.style.cssText = "display:grid;grid-template-columns:1fr;grid-template-rows:1fr 2fr 4fr 1fr 1fr;background-color:lightgrey;width:15vw;height:23vw;margin:10px;"
+
+    remove.style.cssText = "grid-row: span 1;margin:5px;margin-left:85%;border:none;cursor:pointer;background:none;font-weight:bold";
+
+    title_div.style.cssText = 'display:flex;align-items:end;justify-content:center;padding-bottom:5px;font-size:20px;margin-left:5px;';
+    author_div.style.cssText = 'display:flex;justify-content:center;';
+
+    group.style.cssText = 'display:flex;gap:5px;align-items:center;'
+
+    footer_div.style.cssText = 'display:flex;justify-content:space-between;align-items:end;padding:8px;';
+
+    outside_div.style.cssText = "display:flex;justify-content:center;align-items:end;background-color:white";
+    blank_div.style.cssText = 'background-color:white;'
 
     remove.addEventListener('click', function() {
         removeBook(index);
@@ -112,7 +158,6 @@ document.getElementById('submit-button').addEventListener('click', function() {
 
     document.querySelector('.popup').style.display = 'none';
 });
-
 
 
 
