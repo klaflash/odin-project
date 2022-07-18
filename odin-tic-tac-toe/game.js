@@ -10,6 +10,21 @@ const gameboard = (() => {
 
             _renderSquare(i);
         }
+        
+        const winner = _checkWinner();
+
+        if (winner === 'x') {
+            document.querySelector('.winner').textContent = "x wins!";
+        } else if (winner === 'o') {
+            document.querySelector('.winner').textContent = "o wins!";
+        } else {
+
+            if (_checkFull()) {
+                document.querySelector('.winner').textContent = "Draw!";
+            }
+
+        }
+
     };
 
     const _renderSquare = (i) => {
@@ -61,6 +76,7 @@ const gameboard = (() => {
                 }
                 _currentPlay = !_currentPlay;
                 render();
+                _turn();
             }
         });
 
@@ -73,6 +89,7 @@ const gameboard = (() => {
                 }
                 _currentPlay = !_currentPlay;
                 render();
+                _turn();
             }
         });
 
@@ -85,6 +102,7 @@ const gameboard = (() => {
                 }
                 _currentPlay = !_currentPlay;
                 render();
+                _turn();
             }
         });
 
@@ -97,6 +115,7 @@ const gameboard = (() => {
                 }
                 _currentPlay = !_currentPlay;
                 render();
+                _turn();
             }
         });
 
@@ -109,6 +128,7 @@ const gameboard = (() => {
                 }
                 _currentPlay = !_currentPlay;
                 render();
+                _turn();
             }
         });
 
@@ -121,6 +141,7 @@ const gameboard = (() => {
                 }
                 _currentPlay = !_currentPlay;
                 render();
+                _turn();
             }
         });
 
@@ -133,6 +154,7 @@ const gameboard = (() => {
                 }
                 _currentPlay = !_currentPlay;
                 render();
+                _turn();
             }
         });
 
@@ -145,6 +167,7 @@ const gameboard = (() => {
                 }
                 _currentPlay = !_currentPlay;
                 render();
+                _turn();
             }
         });
 
@@ -157,8 +180,153 @@ const gameboard = (() => {
                 }
                 _currentPlay = !_currentPlay;
                 render();
+                _turn();
             }
         });
+    }
+
+    const _turn = () => {
+        if (_currentPlay) {
+            document.querySelector('.turn').textContent = 'Waiting for x';
+        } else {
+            document.querySelector('.turn').textContent = 'Waiting for o'; 
+        }
+    };
+
+    const _checkWinner = () => {
+
+        //row 1
+        if (_board[0] === _board[1] && _board[1] === _board[2]) {
+            if (_board[0] === 'x') {
+                document.querySelector('.zero').style.cssText = 'background-color:rgb(149, 224, 139);'
+                document.querySelector('.one').style.cssText = 'background-color:rgb(149, 224, 139);'
+                document.querySelector('.two').style.cssText = 'background-color:rgb(149, 224, 139);'
+                return 'x';
+            } else if (_board[0] === 'o') {
+                document.querySelector('.zero').style.cssText = 'background-color:rgb(149, 224, 139);'
+                document.querySelector('.one').style.cssText = 'background-color:rgb(149, 224, 139);'
+                document.querySelector('.two').style.cssText = 'background-color:rgb(149, 224, 139);'
+                return 'o';
+            }
+        }
+
+        //row 2
+        if (_board[3] === _board[4] && _board[4] === _board[5]) {
+            if (_board[3] === 'x') {
+                document.querySelector('.three').style.cssText = 'background-color:rgb(149, 224, 139);'
+                document.querySelector('.four').style.cssText = 'background-color:rgb(149, 224, 139);'
+                document.querySelector('.five').style.cssText = 'background-color:rgb(149, 224, 139);'
+                return 'x';
+            } else if (_board[3] === 'o') {
+                document.querySelector('.three').style.cssText = 'background-color:rgb(149, 224, 139);'
+                document.querySelector('.four').style.cssText = 'background-color:rgb(149, 224, 139);'
+                document.querySelector('.five').style.cssText = 'background-color:rgb(149, 224, 139);'
+                return 'o';
+            }
+        }
+
+        //row 3
+        if (_board[6] === _board[7] && _board[7] === _board[8]) {
+            if (_board[6] === 'x') {
+                document.querySelector('.six').style.cssText = 'background-color:rgb(149, 224, 139);'
+                document.querySelector('.seven').style.cssText = 'background-color:rgb(149, 224, 139);'
+                document.querySelector('.eight').style.cssText = 'background-color:rgb(149, 224, 139);'
+                return 'x';
+            } else if (_board[6] === 'o') {
+                document.querySelector('.six').style.cssText = 'background-color:rgb(149, 224, 139);'
+                document.querySelector('.seven').style.cssText = 'background-color:rgb(149, 224, 139);'
+                document.querySelector('.eight').style.cssText = 'background-color:rgb(149, 224, 139);'
+                return 'o';
+            }
+        }
+
+        //column 1
+        if (_board[0] === _board[3] && _board[3] === _board[6]) {
+            if (_board[0] === 'x') {
+                document.querySelector('.zero').style.cssText = 'background-color:rgb(149, 224, 139);'
+                document.querySelector('.three').style.cssText = 'background-color:rgb(149, 224, 139);'
+                document.querySelector('.six').style.cssText = 'background-color:rgb(149, 224, 139);'
+                return 'x';
+            } else if (_board[0] === 'o') {
+                document.querySelector('.zero').style.cssText = 'background-color:rgb(149, 224, 139);'
+                document.querySelector('.three').style.cssText = 'background-color:rgb(149, 224, 139);'
+                document.querySelector('.six').style.cssText = 'background-color:rgb(149, 224, 139);'
+                return 'o';
+            }
+        }
+
+        //column 2
+        if (_board[1] === _board[4] && _board[4] === _board[7]) {
+            if (_board[1] === 'x') {
+                document.querySelector('.one').style.cssText = 'background-color:rgb(149, 224, 139);'
+                document.querySelector('.four').style.cssText = 'background-color:rgb(149, 224, 139);'
+                document.querySelector('.seven').style.cssText = 'background-color:rgb(149, 224, 139);'
+                return 'x';
+            } else if (_board[1] === 'o') {
+                document.querySelector('.one').style.cssText = 'background-color:rgb(149, 224, 139);'
+                document.querySelector('.four').style.cssText = 'background-color:rgb(149, 224, 139);'
+                document.querySelector('.seven').style.cssText = 'background-color:rgb(149, 224, 139);'
+                return 'o';
+            }
+        }
+
+        //column 3
+        if (_board[2] === _board[5] && _board[5] === _board[8]) {
+            if (_board[2] === 'x') {
+                document.querySelector('.two').style.cssText = 'background-color:rgb(149, 224, 139);'
+                document.querySelector('.five').style.cssText = 'background-color:rgb(149, 224, 139);'
+                document.querySelector('.eight').style.cssText = 'background-color:rgb(149, 224, 139);'
+                return 'x';
+            } else if (_board[2] === 'o') {
+                document.querySelector('.two').style.cssText = 'background-color:rgb(149, 224, 139);'
+                document.querySelector('.five').style.cssText = 'background-color:rgb(149, 224, 139);'
+                document.querySelector('.eight').style.cssText = 'background-color:rgb(149, 224, 139);'
+                return 'o';
+            }
+        }
+
+        //diagonal 1
+        if (_board[0] === _board[4] && _board[4] === _board[8]) {
+            if (_board[0] === 'x') {
+                document.querySelector('.zero').style.cssText = 'background-color:rgb(149, 224, 139);'
+                document.querySelector('.four').style.cssText = 'background-color:rgb(149, 224, 139);'
+                document.querySelector('.eight').style.cssText = 'background-color:rgb(149, 224, 139);'
+                return 'x';
+            } else if (_board[0] === 'o') {
+                document.querySelector('.zero').style.cssText = 'background-color:rgb(149, 224, 139);'
+                document.querySelector('.four').style.cssText = 'background-color:rgb(149, 224, 139);'
+                document.querySelector('.eight').style.cssText = 'background-color:rgb(149, 224, 139);'
+                return 'o';
+            }
+        }
+
+        //diagonal 2
+        if (_board[2] === _board[4] && _board[4] === _board[6]) {
+            if (_board[2] === 'x') {
+                document.querySelector('.two').style.cssText = 'background-color:rgb(149, 224, 139);'
+                document.querySelector('.four').style.cssText = 'background-color:rgb(149, 224, 139);'
+                document.querySelector('.six').style.cssText = 'background-color:rgb(149, 224, 139);'
+                return 'x';
+            } else if (_board[2] === 'o') {
+                document.querySelector('.two').style.cssText = 'background-color:rgb(149, 224, 139);'
+                document.querySelector('.four').style.cssText = 'background-color:rgb(149, 224, 139);'
+                document.querySelector('.six').style.cssText = 'background-color:rgb(149, 224, 139);'
+                return 'o';
+            }
+        }
+
+        
+    };
+
+    const _checkFull = () => {
+
+        for (let i = 0; i < _board.length; i++) {
+            if (_board[i] != 'x' && _board[i] != 'o') {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     return {render, listen};
