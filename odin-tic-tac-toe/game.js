@@ -15,12 +15,18 @@ const gameboard = (() => {
 
         if (winner === 'x') {
             document.querySelector('.winner').textContent = "x wins!";
+            document.querySelector('.winner').style.visibility = 'visible';
+            document.querySelector('.reset').style.visibility = 'visible';
         } else if (winner === 'o') {
             document.querySelector('.winner').textContent = "o wins!";
+            document.querySelector('.winner').style.visibility = 'visible';
+            document.querySelector('.reset').style.visibility = 'visible';
         } else {
 
             if (_checkFull()) {
                 document.querySelector('.winner').textContent = "Draw!";
+                document.querySelector('.winner').style.visibility = 'visible';
+                document.querySelector('.reset').style.visibility = 'visible';
             }
 
         }
@@ -183,6 +189,28 @@ const gameboard = (() => {
                 _turn();
             }
         });
+
+        document.querySelector('.reset').addEventListener('click', () => {
+
+            for (let i = 0; i < _board.length; i++) {
+                _board[i] = ' ';
+            }
+
+            document.querySelector('.zero').style.cssText = 'background-color:white;'
+            document.querySelector('.one').style.cssText = 'background-color:white;'
+            document.querySelector('.two').style.cssText = 'background-color:white;'
+            document.querySelector('.three').style.cssText = 'background-color:white;'
+            document.querySelector('.four').style.cssText = 'background-color:white;'
+            document.querySelector('.five').style.cssText = 'background-color:white;'
+            document.querySelector('.six').style.cssText = 'background-color:white;'
+            document.querySelector('.seven').style.cssText = 'background-color:white;'
+            document.querySelector('.eight').style.cssText = 'background-color:white;'
+
+            document.querySelector('.winner').style.visibility = 'hidden';
+            document.querySelector('.reset').style.visibility = 'hidden';
+            render();
+            _turn();    
+        }); 
     }
 
     const _turn = () => {
