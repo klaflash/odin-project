@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size:  16px;
+}
+
+.header {
+    background-color: #575151;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    height: 50px;
+    color: white;
+}
+
+button {
+    color: white;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.container {
+    background-color: #3f3b3b;
+    height: 100vh;
+    color: white;
+}
