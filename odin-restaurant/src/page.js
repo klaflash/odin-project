@@ -1,8 +1,37 @@
+import p1 from '../src/photo1.jpg'
+import p2 from '../src/photo2.jpg'
+
 function homeLoad() {
 
     const main = document.createElement('div');
     main.setAttribute('class', 'container');
-    main.textContent = 'La Carne';
+    
+    const title = document.createElement('div');
+    title.setAttribute('class', 'title');
+    title.textContent = 'La Carne';
+
+    const photo = document.createElement('img');
+    photo.setAttribute('id', 'photo-one');
+    photo.src = p1;
+
+    const photo2 = document.createElement('img');
+    photo2.setAttribute('id', 'photo-two');
+    photo2.src = p2;
+
+    const divider = document.createElement('div');
+    divider.setAttribute('class', 'divider');
+
+    const text = document.createElement('div');
+    text.setAttribute('class', 'text');
+    text.textContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+
+    divider.appendChild(photo2);
+    divider.appendChild(text);
+
+    main.appendChild(title);
+    main.appendChild(photo);
+    main.appendChild(divider);
+
 
     const content = document.getElementById('content');
     
@@ -39,21 +68,25 @@ function menuLoad() {
     drink1.textContent = 'FIJI WATER 5'
     const drinkDes1 = document.createElement('div');
     drinkDes1.textContent = 'Sustainably collected from the purest source';
+    drinkDes1.setAttribute('class', 'description');
 
     const drink2 = document.createElement('div');
     drink2.textContent = 'DOM PÉRIGNON 275'
     const drinkDes2 = document.createElement('div');
     drinkDes2.textContent = 'Bottle';
+    drinkDes2.setAttribute('class', 'description');
 
     const drink3 = document.createElement('div');
     drink3.textContent = 'DRINK #3'
     const drinkDes3 = document.createElement('div');
     drinkDes3.textContent = 'Description';
+    drinkDes3.setAttribute('class', 'description');
 
     const drink4 = document.createElement('div');
     drink4.textContent = 'DRINK #4'
     const drinkDes4 = document.createElement('div');
     drinkDes4.textContent = 'Description';
+    drinkDes4.setAttribute('class', 'description');
 
     drink1.appendChild(drinkDes1);
     drink2.appendChild(drinkDes2);
@@ -77,21 +110,25 @@ function menuLoad() {
     app1.textContent = 'CRAB CAKES 24'
     const appDes1 = document.createElement('div');
     appDes1.textContent = 'Roasted red pepper & lime butter sauce';
+    appDes1.setAttribute('class', 'description');
 
     const app2 = document.createElement('div');
     app2.textContent = 'SWEET CHILI CALAMARI 19'
     const appDes2 = document.createElement('div');
     appDes2.textContent = 'Lightly breaded, tossed with sweet chili sauce';
+    appDes2.setAttribute('class', 'description');
 
     const app3 = document.createElement('div');
     app3.textContent = 'APPITIZER #3'
     const appDes3 = document.createElement('div');
     appDes3.textContent = 'Description';
+    appDes3.setAttribute('class', 'description');
 
     const app4 = document.createElement('div');
     app4.textContent = 'APPITIZER #4'
     const appDes4 = document.createElement('div');
     appDes4.textContent = 'Description';
+    appDes4.setAttribute('class', 'description');
 
     app1.appendChild(appDes1);
     app2.appendChild(appDes2);
@@ -114,21 +151,25 @@ function menuLoad() {
     steak1.textContent = 'MAIN FILET MIGNON 58'
     const steakDes1 = document.createElement('div');
     steakDes1.textContent = 'Served with a choice of our signature butters';
+    steakDes1.setAttribute('class', 'description');
 
     const steak2 = document.createElement('div');
     steak2.textContent = 'PRIME BONE-IN RIBEYE 66'
     const steakDes2 = document.createElement('div');
     steakDes2.textContent = 'Served with a choice of our signature butters';
+    steakDes2.setAttribute('class', 'description');
 
     const steak3 = document.createElement('div');
     steak3.textContent = 'STEAK #3'
     const steakDes3 = document.createElement('div');
     steakDes3.textContent = 'Description';
+    steakDes3.setAttribute('class', 'description');
 
     const steak4 = document.createElement('div');
     steak4.textContent = 'STEAK #4'
     const steakDes4 = document.createElement('div');
     steakDes4.textContent = 'Description';
+    steakDes4.setAttribute('class', 'description');
 
     steak1.appendChild(steakDes1);
     steak2.appendChild(steakDes2);
@@ -151,21 +192,25 @@ function menuLoad() {
     side1.textContent = 'CHIPOTLE CHEDDAR MAC & CHEESE 14'
     const sideDes1 = document.createElement('div');
     sideDes1.textContent = 'Descriptioncavatappi, smoked cheddar, chipotle panko breadcrumbs';
+    sideDes1.setAttribute('class', 'description');
 
     const side2 = document.createElement('div');
     side2.textContent = 'BAKED POTATO PLAIN OR LOADED 13'
     const sideDes2 = document.createElement('div');
     sideDes2.textContent = 'cheddar, sour cream, bacon, butter, scallions';
+    sideDes2.setAttribute('class', 'description');
 
     const side3 = document.createElement('div');
     side3.textContent = 'SIDE #3'
     const sideDes3 = document.createElement('div');
     sideDes3.textContent = 'Description';
+    sideDes3.setAttribute('class', 'description');
 
     const side4 = document.createElement('div');
     side4.textContent = 'SIDE #4'
     const sideDes4 = document.createElement('div');
     sideDes4.textContent = 'Description';
+    sideDes4.setAttribute('class', 'description');
 
     side1.appendChild(sideDes1);
     side2.appendChild(sideDes2);
@@ -190,21 +235,25 @@ function menuLoad() {
     desert1.textContent = 'NEW YORK CHEESECAKE 16'
     const desertDes1 = document.createElement('div');
     desertDes1.textContent = 'Classic preparation, strawberry red wine sauce & fresh mint';
+    desertDes1.setAttribute('class', 'description');
 
     const desert2 = document.createElement('div');
     desert2.textContent = 'CHOCOLATE GOOEY BUTTER CAKE 15'
     const desertDes2 = document.createElement('div');
     desertDes2.textContent = 'Honeycomb brittle, chocolate sauce & caramel';
+    desertDes2.setAttribute('class', 'description');
 
     const desert3 = document.createElement('div');
     desert3.textContent = 'DESERT #3'
     const desertDes3 = document.createElement('div');
     desertDes3.textContent = 'Description';
+    desertDes3.setAttribute('class', 'description');
 
     const desert4 = document.createElement('div');
     desert4.textContent = 'DESERT #4'
     const desertDes4 = document.createElement('div');
     desertDes4.textContent = 'Description';
+    desertDes4.setAttribute('class', 'description');
 
     desert1.appendChild(desertDes1);
     desert2.appendChild(desertDes2);
@@ -239,7 +288,13 @@ function reserveLoad() {
 
     const main = document.createElement('div');
     main.setAttribute('class', 'container');
-    main.textContent = 'Create a reservation';
+    main.setAttribute('id', 'number');
+    main.textContent = 'Call (487)-739-4788 to reserve a table';
+    const sub = document.createElement('div');
+    sub.setAttribute('class', 'sub');
+    sub.textContent = 'Online reservations coming soon...';
+    
+    main.appendChild(sub);
 
     const content = document.getElementById('content');
     

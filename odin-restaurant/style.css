@@ -3,10 +3,11 @@
     padding: 0;
     box-sizing: border-box;
     font-size:  16px;
+    font-family: Roboto;
 }
 
 .header {
-    background-color: #575151;
+    background-color: #302c2c;
     display: flex;
     justify-content: center;
     gap: 50px;
@@ -25,16 +26,25 @@ button {
     display: flex;
     flex-direction: column;
     background-color: #3f3b3b;
-    height: 150vh;
+    height: 160vh;
     color: white;
-    padding-top: 20px;
+    padding-top: 40px;
     align-items: center;
-    font-size: 22px;
+    font-size: 40px;
+    font-family: Cormorant Garamond;
+}
+
+.title {
+    margin-top: -30px;
+    font-size: 300px;
+    font-family: Cormorant Garamond;
+    font-weight: 700;
 }
 
 h2 {
-    font-weight: 400;
+    font-weight: 700;
     font-size: 28px;
+    font-family: Cormorant Garamond;
 }
 
 .list {
@@ -60,4 +70,39 @@ h2 {
 
 #last-grid {
     border-bottom: none; 
+}
+
+.description {
+    font-family: Cormorant Garamond;
+    font-weight: 300;
+}
+
+#number {
+    font-size: 30px;
+    font-family: Roboto;
+}
+
+.sub {
+    font-family: Cormorant Garamond;
+}
+
+.divider {
+    margin-top: 50px;
+    width: 97%;
+    height: 60vh;
+    background-color: #fff4e3;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+
+.text {
+    padding-top: -50px;
+    color: black;
+    padding-right: 100px;
+}
+
+#photo-two {
+    height:300px;
+    margin-left: 100px;
 }
