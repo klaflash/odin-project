@@ -5,6 +5,11 @@ Coding projects from The Odin Project JavaScript courses
 <br/>
 <br/>
 
+## 📁 [odin-restaurant](https://klaflash.github.io/odin-project/odin-restaurant/dist/index.html)
+Dynamically rendered mock restaurant home page.
+<br/>
+<br/>
+
 ## 📁 [odin-tic-tac-toe](https://klaflash.github.io/odin-project/odin-tic-tac-toe)
 Play against a friend in a game of tic-tac-toe.
 <br/>
