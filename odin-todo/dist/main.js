@@ -1,1 +1,1 @@
-console.log("working");
+(()=>{"use strict";const o={root:{}},t=(t,e,i,s,c,l)=>{const n={};n.project=t,n.title=e,n.description=i,n.dueDate=s,n.time=c,n.priority=l,o[t]=n};console.log("working"),t("root","Read","Talking to strangers","today","12","high"),o.School={},t("School","CS373 Hw 1","Review slides and code","friday","11","high"),(()=>{for(const t in o)console.log(`${t}: ${o[t]}`),console.log(o[t].title),console.log(o[t].description)})()})();
