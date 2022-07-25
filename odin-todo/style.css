@@ -130,3 +130,8 @@ body {
     align-items: center;
     gap: 20px;
 }
+
+.line-container {
+    display: flex;
+    gap: 20px;
+}

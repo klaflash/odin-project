@@ -1,8 +1,9 @@
 const rootProject = {'root':[]};
 
-const createProject = (name) => {
+const createProject = (name,color) => {
     const temp = [];
     rootProject[name] = temp;
+    temp.color = color;
 };
 
 const createItem = (project, title, description, dueDate, time, priority) => {
