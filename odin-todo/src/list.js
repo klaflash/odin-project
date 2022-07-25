@@ -1,8 +1,7 @@
-const rootProject = {};
-rootProject['root'] = {};
+const rootProject = {'root':[]};
 
 const createProject = (name) => {
-    const temp = {};
+    const temp = [];
     rootProject[name] = temp;
 };
 
@@ -15,7 +14,11 @@ const createItem = (project, title, description, dueDate, time, priority) => {
     item.time = time;
     item.priority = priority;
 
-    rootProject[project] = item;
+    if (rootProject[project] === undefined) {
+        rootProject[project] = [];
+    }
+
+    rootProject[project].push(item);
 };
 
 export {rootProject, createProject, createItem};
