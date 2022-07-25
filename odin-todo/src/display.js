@@ -14,19 +14,41 @@ const display = () => {
 
 };
 
-const append = (project) => {
-
-
+const taskModal = () => {
 
 };
 
-const listen = () => {
+const projectModal = () => {
 
-    document.querySelector('.add-project').addEventListener('click', () => {
-        
+    const modal = document.querySelector('.project-modal');
+    const trigger = document.querySelector('.add-project');
+    const close = document.querySelector('.close-button');
+    const name = document.getElementById('project-name');
+    const create = document.querySelector('.create-project-button')
 
+    function toggleModal() {
+        modal.classList.toggle('show-modal')
+    }
+
+    function windowOnClick(event) {
+        if (event.target === modal) {
+            toggleModal();
+        }
+    }
+
+    trigger.addEventListener('click', toggleModal);
+    close.addEventListener('click', toggleModal);
+    window.addEventListener('click', windowOnClick);
+
+    create.addEventListener('click', () => {
+        createProject(name.value);
+        display();
+        toggleModal();
+        name.value = '';
     });
 
 };
 
-export {display};
+
+
+export {display, projectModal};
