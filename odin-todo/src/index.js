@@ -16,11 +16,14 @@ projectModal();
 taskModal();
 
 
-//archive checked tasks
-
 //edit and delete projects
 //modal confirmation for deleting project
+
+//change root to home
+//add projects to home main
 
 //sort tasks by time or priority
 
 //calendar view
+
+//local storage

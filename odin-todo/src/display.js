@@ -218,24 +218,23 @@ const viewTaskArchive = (() => {
         const mainContainer = document.querySelector('.main-container');
         mainContainer.textContent = '';
 
+        for (let i = taskArchive.length - 1; i >= 0; i--) {
 
-        for (const project in taskArchive) {
-            for (const item of taskArchive[project]) {
+            const item = taskArchive[i];
 
-                const archiveRow = document.createElement('div');
-                archiveRow.setAttribute('class', 'archive-row');
+            const archiveRow = document.createElement('div');
+            archiveRow.setAttribute('class', 'archive-row');
 
-                const projectTemp = document.createElement('div');
-                projectTemp.textContent = item.project;
-                projectTemp.style.backgroundColor = project.color;
+            const projectTemp = document.createElement('div');
+            projectTemp.textContent = item.project;
+            projectTemp.style.backgroundColor = rootProject[item.project].color;
 
-                const taskTemp = document.createElement('div');
-                taskTemp.textContent = `${item.title}, ${item.description}, ${item.dueDate}, ${item.time}, ${item.priority} priority`;
+            const taskTemp = document.createElement('div');
+            taskTemp.textContent = `${item.title}, ${item.description}, ${item.dueDate}, ${item.time}, ${item.priority} priority`;
 
-                archiveRow.appendChild(projectTemp);
-                archiveRow.appendChild(taskTemp);
-                mainContainer.appendChild(archiveRow);
-            }
+            archiveRow.appendChild(projectTemp);
+            archiveRow.appendChild(taskTemp);
+            mainContainer.appendChild(archiveRow);
         }
     });
 

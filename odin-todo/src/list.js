@@ -1,5 +1,5 @@
 const rootProject = {'root':[]};
-const taskArchive = {'root':[]};
+const taskArchive = [];
 
 const createProject = (name,color) => {
     const temp = [];
@@ -24,12 +24,7 @@ const createItem = (project, title, description, dueDate, time, priority) => {
 };
 
 const appendArchive = (item) => {
-
-    if (taskArchive[item.project] === undefined) {
-        taskArchive[item.project] = [];
-    }
-
-    taskArchive[item.project].push(item);
+    taskArchive.push(item);
 };
 
 export {rootProject, taskArchive, appendArchive, createProject, createItem};
