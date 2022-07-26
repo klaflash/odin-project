@@ -1,4 +1,4 @@
-import {rootProject, createProject, createItem} from './list.js';
+import {rootProject, taskArchive, appendArchive, createProject, createItem} from './list.js';
 
 const display = (page) => {
 
@@ -202,7 +202,7 @@ const checkOffTask = (project, item, div) => {
         const index = rootProject[project].indexOf(item);
         rootProject[project].splice(index, 1);
 
-        archiveTask();
+        appendArchive(item);
 
         display(project);
         displayProjectPage();
@@ -210,9 +210,36 @@ const checkOffTask = (project, item, div) => {
 
 };
 
-const archiveTask = () => {
+const viewTaskArchive = (() => {
 
-};
+    const archive = document.querySelector('.archive-button');
+
+    archive.addEventListener('click', () => {
+        const mainContainer = document.querySelector('.main-container');
+        mainContainer.textContent = '';
+
+
+        for (const project in taskArchive) {
+            for (const item of taskArchive[project]) {
+
+                const archiveRow = document.createElement('div');
+                archiveRow.setAttribute('class', 'archive-row');
+
+                const projectTemp = document.createElement('div');
+                projectTemp.textContent = item.project;
+                projectTemp.style.backgroundColor = project.color;
+
+                const taskTemp = document.createElement('div');
+                taskTemp.textContent = `${item.title}, ${item.description}, ${item.dueDate}, ${item.time}, ${item.priority} priority`;
+
+                archiveRow.appendChild(projectTemp);
+                archiveRow.appendChild(taskTemp);
+                mainContainer.appendChild(archiveRow);
+            }
+        }
+    });
+
+})();
 
 
 export {display, projectModal, taskModal, displayProjectPage};

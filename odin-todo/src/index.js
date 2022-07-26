@@ -16,11 +16,11 @@ projectModal();
 taskModal();
 
 
+//archive checked tasks
+
 //edit and delete projects
 //modal confirmation for deleting project
 
-//check off tasks and archive
+//sort tasks by time or priority
 
 //calendar view
-
-//sort tasks by time or priority

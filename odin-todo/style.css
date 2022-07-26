@@ -141,3 +141,9 @@ body {
     gap: 40px;
     align-items: center;
 }
+
+.archive-row {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
