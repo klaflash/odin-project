@@ -135,3 +135,9 @@ body {
     display: flex;
     gap: 20px;
 }
+
+.task-container {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}

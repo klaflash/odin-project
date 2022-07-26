@@ -14,3 +14,13 @@ displayProjectPage();
 
 projectModal();
 taskModal();
+
+
+//edit and delete projects
+//modal confirmation for deleting project
+
+//check off tasks and archive
+
+//calendar view
+
+//sort tasks by time or priority

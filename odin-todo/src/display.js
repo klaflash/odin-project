@@ -33,11 +33,26 @@ const display = (page) => {
         for (const item of rootProject[project]) {
 
             if (item.project === page) {
+
+                const taskContainer = document.createElement('div');
+                taskContainer.setAttribute('class', 'task-container');
                 
+                const closeTask = document.createElement('div');
+                closeTask.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M6.4 19 5 17.6l5.6-5.6L5 6.4 6.4 5l5.6 5.6L17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6Z"/></svg>'
+
+                const checkTask = document.createElement('div');
+                checkTask.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M12 22q-2.075 0-3.9-.788-1.825-.787-3.175-2.137-1.35-1.35-2.137-3.175Q2 14.075 2 12t.788-3.9q.787-1.825 2.137-3.175 1.35-1.35 3.175-2.138Q9.925 2 12 2t3.9.787q1.825.788 3.175 2.138 1.35 1.35 2.137 3.175Q22 9.925 22 12t-.788 3.9q-.787 1.825-2.137 3.175-1.35 1.35-3.175 2.137Q14.075 22 12 22Zm0-2q3.35 0 5.675-2.325Q20 15.35 20 12q0-3.35-2.325-5.675Q15.35 4 12 4 8.65 4 6.325 6.325 4 8.65 4 12q0 3.35 2.325 5.675Q8.65 20 12 20Zm0-8Z"/></svg>'
 
                 const taskTemp = document.createElement('div');
                 taskTemp.textContent = `${item.title}, ${item.description}, ${item.dueDate}, ${item.time}, ${item.priority} priority`;
-                mainContainer.appendChild(taskTemp);
+
+                taskContainer.appendChild(checkTask);
+                taskContainer.appendChild(taskTemp);
+                taskContainer.appendChild(closeTask);
+                mainContainer.appendChild(taskContainer);
+
+                deleteTask(item.project, item, closeTask);
+                checkOffTask(item.project, item, checkTask);
             }
 
             count++;
@@ -45,6 +60,7 @@ const display = (page) => {
             console.log(`${item.project}, ${item.title}, ${item.description}, ${item.dueDate}, ${item.time}, ${item.priority}`);
         }
         projectTemp.textContent = project;
+        projectTemp.style.backgroundColor = rootProject[project].color;
         countTemp.textContent = count;
         lineContainer.appendChild(projectTemp);
         lineContainer.appendChild(countTemp);
@@ -63,13 +79,9 @@ const displayProjectPage = () => {
     for (const div of projectsArray) {
         div.addEventListener('click', () => {
             display(div.firstChild.textContent);
+            displayProjectPage();
         });
     }
-
-
-
-    
-
 };
 
 const taskModal = () => {
@@ -118,6 +130,7 @@ const taskModal = () => {
 
         createItem(proj.value, name.value, description.value, date.value, time.value, priority.value);
         display(proj.value);
+        displayProjectPage();
         toggleModal();
         proj.value = 'root';
         name.value = '';
@@ -164,6 +177,7 @@ const projectModal = () => {
     create.addEventListener('click', () => {
         createProject(name.value, color.value);
         display(name.value);
+        displayProjectPage();
         rePopulateProjectList(name.value);
         toggleModal();
         name.value = '';
@@ -171,6 +185,34 @@ const projectModal = () => {
 
 };
 
+const deleteTask = (project, item, div) => {
+
+    div.addEventListener('click', () => {
+        const index = rootProject[project].indexOf(item);
+        rootProject[project].splice(index, 1);
+        display(project);
+        displayProjectPage();
+    });
+
+};
+
+const checkOffTask = (project, item, div) => {
+
+    div.addEventListener('click', () => {
+        const index = rootProject[project].indexOf(item);
+        rootProject[project].splice(index, 1);
+
+        archiveTask();
+
+        display(project);
+        displayProjectPage();
+    });
+
+};
+
+const archiveTask = () => {
+
+};
 
 
 export {display, projectModal, taskModal, displayProjectPage};
