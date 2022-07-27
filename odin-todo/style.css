@@ -136,6 +136,10 @@ body {
     gap: 20px;
 }
 
+.delete-project {
+    margin-left: auto;
+}
+
 .task-container {
     display: flex;
     gap: 40px;

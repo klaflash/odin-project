@@ -25,7 +25,11 @@ const display = (page) => {
         lineContainer.setAttribute('class', 'line-container');
 
         const projectTemp = document.createElement('div');
-        const countTemp = document.createElement('span');
+        const countTemp = document.createElement('div');
+        const deleteIcon = document.createElement('div')
+        deleteIcon.setAttribute('class', 'delete-project');
+        deleteIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M6.062 15 5 13.938 8.938 10 5 6.062 6.062 5 10 8.938 13.938 5 15 6.062 11.062 10 15 13.938 13.938 15 10 11.062Z"/></svg>';
+
         
         console.log(`${project}: ${rootProject[project].color} : ${rootProject[project]}`);
 
@@ -60,10 +64,19 @@ const display = (page) => {
             console.log(`${item.project}, ${item.title}, ${item.description}, ${item.dueDate}, ${item.time}, ${item.priority}`);
         }
         projectTemp.textContent = project;
-        projectTemp.style.backgroundColor = rootProject[project].color;
+
+        
+        if (rootProject[project].color === undefined) {
+            projectTemp.style.backgroundColor = rootProject[project].color;
+        } else {
+            projectTemp.style.backgroundColor = rootProject[project].color;
+        }
         countTemp.textContent = count;
         lineContainer.appendChild(projectTemp);
         lineContainer.appendChild(countTemp);
+        if (project != 'root') {
+            lineContainer.appendChild(deleteIcon);
+        }
         projectsContainer.appendChild(lineContainer);
         count = 0;
     }
@@ -77,11 +90,28 @@ const displayProjectPage = () => {
     const projectsArray = document.querySelector('.projects-container').children;
     
     for (const div of projectsArray) {
-        div.addEventListener('click', () => {
+        div.firstChild.addEventListener('click', () => {
             display(div.firstChild.textContent);
             displayProjectPage();
         });
+
+        if (div.firstChild.textContent != 'root') {
+            const deleteTemp = div.querySelector('.delete-project');
+            deleteTemp.addEventListener('click', () => {
+                console.log('clicked delete');
+                deleteProject(div.firstChild.textContent);
+            });
+        }
+        
     }
+};
+
+const deleteProject = (name) => {
+
+    delete rootProject[name];
+    display('root');
+    displayProjectPage();
+
 };
 
 const taskModal = () => {
