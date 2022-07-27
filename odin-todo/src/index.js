@@ -24,9 +24,7 @@ display("home");
 displayProjectPage();
 
 projectModal();
-taskModal();
 
-//sort tasks by time or priority
 //calendar view
 //local storage
 //css

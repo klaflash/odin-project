@@ -17,12 +17,12 @@ const display = (page) => {
   const mainContainer = document.querySelector(".main-container");
   mainContainer.textContent = "";
 
+  const title = document.createElement("div");
+  title.setAttribute('class', 'project-title');
   if (page === "home") {
-    const title = document.createElement("div");
     title.textContent = "Tasks";
     mainContainer.appendChild(title);
   } else {
-    const title = document.createElement("div");
     title.textContent = page;
     mainContainer.appendChild(title);
   }
@@ -35,13 +35,11 @@ const display = (page) => {
     sortByDate();
     obj = sortedDateProject;
   } else if (currentSort === 'priority') {
+    sortByPriority();
     obj = sortedPriorityProject;
   } else {
     obj = rootProject;
   }
-
-
-
 
 
   for (const project in obj) {
@@ -133,11 +131,12 @@ const displayProjectPage = () => {
 
 const deleteProject = (name) => {
   delete rootProject[name];
+  taskModal.populateProjectList();
   display("home");
   displayProjectPage();
 };
 
-const taskModal = () => {
+const taskModal = (() => {
   const modal = document.querySelector(".task-modal");
   const trigger = document.querySelector(".add-task");
   const close = document.querySelector(".close-task-button");
@@ -198,7 +197,9 @@ const taskModal = () => {
     time.value = "";
     priority.value = "low";
   });
-};
+
+  return {populateProjectList};
+})();
 
 const projectModal = () => {
   const modal = document.querySelector(".project-modal");
@@ -311,7 +312,14 @@ const sortOldestListener = (() => {
 
   document.querySelector('.sort-oldest').addEventListener('click', () => {
     currentSort = 'oldest';
-    display('home');
+
+    let title = document.querySelector('.project-title').textContent;
+
+    if (title === 'Tasks') {
+      title = 'home';
+    }
+
+    display(title);
     displayProjectPage();
   });
 
@@ -321,7 +329,14 @@ const sortDateListener = (() => {
 
   document.querySelector('.sort-date').addEventListener('click', () => {
     currentSort = 'date';
-    display('home');
+
+    let title = document.querySelector('.project-title').textContent;
+
+    if (title === 'Tasks') {
+      title = 'home';
+    }
+
+    display(title);
     displayProjectPage();
   });
 
@@ -331,7 +346,14 @@ const sortPriorityListener = (() => {
 
   document.querySelector('.sort-priority').addEventListener('click', () => {
     currentSort = 'priority';
-    display('home');
+
+    let title = document.querySelector('.project-title').textContent;
+
+    if (title === 'Tasks') {
+      title = 'home';
+    }
+
+    display(title);
     displayProjectPage();
   });
 
@@ -348,6 +370,41 @@ const sortByDate = () => {
       const dateB = new Date(b.dueDate + ' ' + b.time);
       console.log(dateB);
       return dateA - dateB;
+    });
+  }
+
+};
+
+const sortByPriority = () => {
+  sortedPriorityProject = structuredClone(rootProject);
+
+  for (const project in sortedPriorityProject) {
+    
+    sortedPriorityProject[project].sort(function(a,b) {
+      let priorityA = a.priority;
+      let priorityB = b.priority;
+
+      if (priorityA === undefined) {
+        priorityA = 3;
+      } else if (priorityA === 'low') {
+        priorityA = 2;
+      } else if (priorityA === 'medium') {
+        priorityA = 1;
+      } else if (priorityA === 'high') {
+        priorityA = 0;
+      }
+
+      if (priorityB === undefined) {
+        priorityB = 3;
+      } else if (priorityB === 'low') {
+        priorityB = 2;
+      } else if (priorityB === 'medium') {
+        priorityB = 1;
+      } else if (priorityB === 'high') {
+        priorityB = 0;
+      }
+
+      return priorityA - priorityB;
     });
   }
 
