@@ -1,4 +1,4 @@
-const rootProject = {'root':[]};
+const rootProject = {'home':[]};
 const taskArchive = [];
 
 const createProject = (name,color) => {

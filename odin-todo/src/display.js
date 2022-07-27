@@ -8,7 +8,7 @@ const display = (page) => {
     const mainContainer = document.querySelector('.main-container');
     mainContainer.textContent = '';
 
-    if (page === 'root') {
+    if (page === 'home') {
         const title = document.createElement('div');
         title.textContent = "Tasks";
         mainContainer.appendChild(title);
