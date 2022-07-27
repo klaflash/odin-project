@@ -270,5 +270,24 @@ const viewTaskArchive = (() => {
 
 })();
 
+const deleteProjectListener = (() => {
+
+    const projectsArray = document.querySelector('.projects-container').children;
+
+    document.querySelector('.delete-project-button').addEventListener('click', () => {
+        for (const div of projectsArray) {
+            const x = div.lastChild;
+
+            if (x.style.display === 'block') {
+                x.style.display = 'none';
+            } else {
+                x.style.display = 'block';
+            }
+        }
+        
+    });
+
+})();
+
 
 export {display, projectModal, taskModal, displayProjectPage};

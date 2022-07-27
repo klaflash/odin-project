@@ -138,6 +138,7 @@ body {
 
 .delete-project {
     margin-left: auto;
+    display: none;
 }
 
 .task-container {

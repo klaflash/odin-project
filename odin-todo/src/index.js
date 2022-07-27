@@ -16,9 +16,9 @@ projectModal();
 taskModal();
 
 //change root to home
+//linter & prittier
 
 //sort tasks by time or priority
-
 //calendar view
-
 //local storage
+//css
