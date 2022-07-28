@@ -3,21 +3,21 @@ import {
   taskArchive,
   sortedDateProject,
   sortedPriorityProject,
+  colorStorage,
   appendArchive,
   createProject,
   createItem,
+  store
 } from "./list.js";
 
 
 import Calendar from 'tui-calendar'; /* ES6 */
 import "tui-calendar/dist/tui-calendar.css";
-//var Calendar = window.tui.Calendar;
-//const Calendar = require('@toast-ui/calendar');
-//require('@toast-ui/calendar/dist/toastui-calendar.min.css');
 
 let currentSort = 'oldest';
 
 const display = (page) => {
+
   const sortButtons = document.querySelector('.sort-buttons');
   sortButtons.style.display = 'block';
   
@@ -101,10 +101,12 @@ const display = (page) => {
     }
     projectTemp.textContent = project;
 
-    if (obj[project].color === undefined) {
-      projectTemp.style.backgroundColor = obj[project].color;
+    console.log(obj[project].color);
+
+    if (colorStorage[project] === undefined) {
+      //projectTemp.style.backgroundColor = obj[project].color;
     } else {
-      projectTemp.style.backgroundColor = obj[project].color;
+      projectTemp.style.backgroundColor = colorStorage[project];
     }
     countTemp.textContent = count;
     lineContainer.appendChild(projectTemp);
@@ -115,6 +117,9 @@ const display = (page) => {
     projectsContainer.appendChild(lineContainer);
     count = 0;
   }
+
+  taskModal.clearProjectList();
+  taskModal.populateProjectList();
 
   console.log("-------------------");
   console.log("");
@@ -132,7 +137,7 @@ const displayProjectPage = () => {
     if (div.firstChild.textContent != "home") {
       const deleteTemp = div.querySelector(".delete-project");
       deleteTemp.addEventListener("click", () => {
-        console.log("clicked delete");
+        //console.log("clicked delete");
         deleteProject(div.firstChild.textContent);
       });
     }
@@ -142,6 +147,7 @@ const displayProjectPage = () => {
 const deleteProject = (name) => {
   delete rootProject[name];
   taskModal.populateProjectList();
+  store();
   display("home");
   displayProjectPage();
 };
@@ -170,16 +176,21 @@ const taskModal = (() => {
     }
   }
 
+  function clearProjectList() {
+    const list = document.getElementById("project-list");
+    list.textContent = ''; 
+  }
+
   function populateProjectList() {
+    //console.log('in');
     const list = document.getElementById("project-list");
 
     for (const project in rootProject) {
-      if (project != "home") {
+      //console.log(project);
         const temp = document.createElement("option");
         temp.value = project;
         temp.textContent = project;
         list.appendChild(temp);
-      }
     }
   }
   populateProjectList();
@@ -208,7 +219,7 @@ const taskModal = (() => {
     priority.value = "low";
   });
 
-  return {populateProjectList};
+  return {populateProjectList, clearProjectList};
 })();
 
 const projectModal = () => {
@@ -246,7 +257,7 @@ const projectModal = () => {
     createProject(name.value, color.value);
     display(name.value);
     displayProjectPage();
-    rePopulateProjectList(name.value);
+    //rePopulateProjectList(name.value);
     toggleModal();
     name.value = "";
   });
@@ -256,6 +267,7 @@ const deleteTask = (project, item, div) => {
   div.addEventListener("click", () => {
     const index = rootProject[project].indexOf(item);
     rootProject[project].splice(index, 1);
+    store();
     display(project);
     displayProjectPage();
   });
@@ -277,6 +289,9 @@ const viewTaskArchive = (() => {
   const archive = document.querySelector(".archive-button");
 
   archive.addEventListener("click", () => {
+    const sortButtons = document.querySelector('.sort-buttons');
+    sortButtons.style.display = 'none';
+
     const mainContainer = document.querySelector(".main-container");
     mainContainer.textContent = "";
 
@@ -288,7 +303,8 @@ const viewTaskArchive = (() => {
 
       const projectTemp = document.createElement("div");
       projectTemp.textContent = item.project;
-      projectTemp.style.backgroundColor = rootProject[item.project].color;
+      //console.log(item.color);
+      projectTemp.style.backgroundColor = colorStorage[item.project];
 
       const taskTemp = document.createElement("div");
       taskTemp.textContent = `${item.title}, ${item.description}, ${item.dueDate}, ${item.time}, ${item.priority} priority`;
@@ -376,9 +392,9 @@ const sortByDate = () => {
     
     sortedDateProject[project].sort(function(a,b) {
       const dateA = new Date(a.dueDate + ' ' + a.time);
-      console.log(dateA);
+      //console.log(dateA);
       const dateB = new Date(b.dueDate + ' ' + b.time);
-      console.log(dateB);
+      //console.log(dateB);
       return dateA - dateB;
     });
   }
@@ -463,7 +479,7 @@ const viewCalendar = (() => {
 
 
     const calendar = new Calendar('#calendar', {
-      defaultView: 'month',
+      defaultView: 'week',
       isReadOnly: true,
       week: {
         taskView: true,
@@ -472,8 +488,18 @@ const viewCalendar = (() => {
       template: {
         time(event) {
           const { start, end, title } = event;
+
+          const color = event.color;
+
+          let minutes = start._date.getMinutes();
+
+          if (minutes === 0) {
+            minutes = '00'
+          }
+
+          console.log(document.querySelector('.tui-full-calendar-time-schedule'));
     
-          return `<span style="color: white;">${start._date.getHours()}:${start._date.getMinutes()} ${title}</span>`;
+          return `<div style="color: white;background-color: ${color}; margin-left:-3px;margin-top:-2px;padding-bottom:2px;padding-top:2px;padding-left:5px;">${start._date.getHours()}:${minutes} ${title}</div>`;
         },
         allday(event) {
           return `<span style="color: gray;">${event.title}</span>`;
@@ -495,59 +521,26 @@ const viewCalendar = (() => {
 
     const populateCalendar = () => {
 
+      let count = 1;
+      const events = [];
 
-      calendar.createSchedules([
-        {
-            id: '1',
-            calendarId: '2',
-            title: 'Please',
-            category: 'task',
-            dueDateClass: '',
-            start: '2022-07-21T20:30:00+09:00',
-            end: '2022-07-21T20:31:00+09:00',
-            isReadOnly: true
-        },
-        {
-            id: '1',
-            calendarId: '1',
-            title: 'second schedule',
-            category: 'time',
-            dueDateClass: '',
-            start: '2022-07-19T17:30:00+09:00',
-            end: '2022-07-19T17:31:00+09:00',
-            isReadOnly: true    // schedule is read-only
-        },
-        {
-          id: '1',
-          calendarId: '1',
-          title: 'Coding time',
-          category: 'time',
-          dueDateClass: '',
-          start: '2022-07-20T17:30:00+09:00',
-          end: '2022-07-20T17:31:00+09:00',
-          isReadOnly: true    // schedule is read-only
+      for (const project in rootProject) {
+        for (const item of rootProject[project]) {
+          const tempEvent = {};
+          tempEvent.id = count;
+          tempEvent.calendarId = 1;
+          tempEvent.title = item.title;
+          tempEvent.category = 'time';
+          tempEvent.dueDateClass = '';
+          tempEvent.start = new Date(item.dueDate + ' ' + item.time);
+          tempEvent.end = new Date(item.dueDate + ' ' + item.time);
+          tempEvent.color = colorStorage[project];
+          events.push(tempEvent);
+          count++;
+        }
       }
-    ]);
 
-      // let count = 1;
-      // const events = [];
-
-      // for (const project in rootProject) {
-      //   for (const item of rootProject[project]) {
-      //     const tempEvent = new Schedule();
-      //     tempEvent.id = count;
-      //     tempEvent.calendarId = 1;
-      //     tempEvent.title = item.title;
-      //     tempEvent.category = 'time';
-      //     tempEvent.dueDateClass = '';
-      //     tempEvent.start = new Date(item.dueDate + ' ' + item.time);
-      //     tempEvent.end = new Date(item.dueDate + ' ' + item.time);
-      //     events.push(tempEvent);
-      //     count++;
-      //   }
-      // }
-
-      // createSchedules(events);
+      calendar.createSchedules(events);
 
     };
 

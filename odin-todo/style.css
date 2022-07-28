@@ -18,7 +18,7 @@ body {
 
 .sidebar {
     grid-row: 2 / 3;
-    background-color: lightgrey;
+    background-color: #d3d3d3;
 }
 
 .main {
@@ -34,6 +34,7 @@ body {
     background-color: rgba(0,0,0,0.5);
     opacity: 0;
     visibility: hidden;
+    z-index: 5;
 }
 
 .project-modal-content {
@@ -77,6 +78,7 @@ body {
     background-color: rgba(0,0,0,0.5);
     opacity: 0;
     visibility: hidden;
+    z-index: 5;
 }
 
 .task-modal-content {
