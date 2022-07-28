@@ -8,9 +8,19 @@ import {
   createItem,
 } from "./list.js";
 
+
+import Calendar from 'tui-calendar'; /* ES6 */
+import "tui-calendar/dist/tui-calendar.css";
+//var Calendar = window.tui.Calendar;
+//const Calendar = require('@toast-ui/calendar');
+//require('@toast-ui/calendar/dist/toastui-calendar.min.css');
+
 let currentSort = 'oldest';
 
 const display = (page) => {
+  const sortButtons = document.querySelector('.sort-buttons');
+  sortButtons.style.display = 'block';
+  
   const projectsContainer = document.querySelector(".projects-container");
   projectsContainer.textContent = "";
 
@@ -409,5 +419,159 @@ const sortByPriority = () => {
   }
 
 };
+
+const viewCalendar = (() => {
+
+  const calendar = document.querySelector('.calendar-button');
+
+  calendar.addEventListener('click', () => {
+    const mainContainer = document.querySelector(".main-container");
+    mainContainer.textContent = "";
+
+    const sortButtons = document.querySelector('.sort-buttons');
+    sortButtons.style.display = 'none';
+
+    const calDiv = document.createElement('div');
+    calDiv.setAttribute('id', 'calendar');
+    calDiv.style.height = '700px';
+
+    const today = document.createElement('button');
+    today.textContent = 'Today';
+
+    const backWeek = document.createElement('button');
+    backWeek.textContent = 'Back';
+
+    const forwardWeek = document.createElement('button');
+    forwardWeek.textContent = 'Forward'
+
+    const monthView = document.createElement('button');
+    monthView.textContent = 'Month View';
+
+    const weekView = document.createElement('button');
+    weekView.textContent = 'Week View';
+
+    const monthTitle = document.createElement('div');
+    monthTitle.setAttribute('class', 'month-title');
+
+    calDiv.appendChild(today);
+    calDiv.appendChild(backWeek);
+    calDiv.appendChild(forwardWeek);
+    calDiv.appendChild(monthView);
+    calDiv.appendChild(weekView);
+    calDiv.appendChild(monthTitle);
+    mainContainer.appendChild(calDiv);
+
+
+    const calendar = new Calendar('#calendar', {
+      defaultView: 'month',
+      isReadOnly: true,
+      week: {
+        taskView: true,
+        eventView: false,
+      },
+      template: {
+        time(event) {
+          const { start, end, title } = event;
+    
+          return `<span style="color: white;">${formatTime(start)}~${formatTime(end)} ${title}</span>`;
+        },
+        allday(event) {
+          return `<span style="color: gray;">${event.title}</span>`;
+        },
+      },
+      calendars: [
+        {
+          id: 'cal1',
+          name: 'Personal',
+          backgroundColor: '#03bd9e',
+        },
+        {
+          id: 'cal2',
+          name: 'Work',
+          backgroundColor: '#00a9ff',
+        },
+      ],
+    });
+
+
+    today.addEventListener('click', () => {
+      calendar.today();
+      setMonthTitle();
+    });
+
+    backWeek.addEventListener('click', () => {
+      calendar.move(-1);
+      calendar.render();
+      setMonthTitle();
+    });
+
+    forwardWeek.addEventListener('click', () => {
+      calendar.move(1);
+      calendar.render();
+      setMonthTitle();
+    });
+
+    monthView.addEventListener('click', () => {
+      calendar.changeView('month');
+      setMonthTitle();
+    });
+
+    weekView.addEventListener('click', () => {
+      calendar.changeView('week');
+      setMonthTitle();
+    });
+
+    const setMonthTitle = () => {
+
+      const month = calendar.getDate().getMonth();
+      const year = calendar.getDate().getFullYear();
+      
+      switch (month) {
+        case 0:
+          monthTitle.textContent = `January ${year}`;
+          break;
+        case 1:
+          monthTitle.textContent = `Feburary ${year}`;
+          break;
+        case 2:
+          monthTitle.textContent = `March ${year}`;
+          break;
+        case 3:
+          monthTitle.textContent = `April ${year}`;
+          break;
+        case 4:
+          monthTitle.textContent = `May ${year}`;
+          break;
+        case 5:
+          monthTitle.textContent = `June ${year}`;
+          break;
+        case 6:
+          monthTitle.textContent = `July ${year}`;
+          break;
+        case 7:
+          monthTitle.textContent = `August ${year}`;
+          break;
+        case 8:
+          monthTitle.textContent = `September ${year}`;
+          break;
+        case 9:
+          monthTitle.textContent = `October ${year}`;
+          break;
+        case 10:
+          monthTitle.textContent = `November ${year}`;
+          break;
+        case 11:
+          monthTitle.textContent = `December ${year}`;
+      }
+    };
+
+    setMonthTitle();
+
+
+    
+
+  });
+  
+})();
 
 export { display, projectModal, taskModal, displayProjectPage };
