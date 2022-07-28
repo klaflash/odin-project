@@ -473,7 +473,7 @@ const viewCalendar = (() => {
         time(event) {
           const { start, end, title } = event;
     
-          return `<span style="color: white;">${formatTime(start)}~${formatTime(end)} ${title}</span>`;
+          return `<span style="color: white;">${start._date.getHours()}:${start._date.getMinutes()} ${title}</span>`;
         },
         allday(event) {
           return `<span style="color: gray;">${event.title}</span>`;
@@ -492,6 +492,66 @@ const viewCalendar = (() => {
         },
       ],
     });
+
+    const populateCalendar = () => {
+
+
+      calendar.createSchedules([
+        {
+            id: '1',
+            calendarId: '2',
+            title: 'Please',
+            category: 'task',
+            dueDateClass: '',
+            start: '2022-07-21T20:30:00+09:00',
+            end: '2022-07-21T20:31:00+09:00',
+            isReadOnly: true
+        },
+        {
+            id: '1',
+            calendarId: '1',
+            title: 'second schedule',
+            category: 'time',
+            dueDateClass: '',
+            start: '2022-07-19T17:30:00+09:00',
+            end: '2022-07-19T17:31:00+09:00',
+            isReadOnly: true    // schedule is read-only
+        },
+        {
+          id: '1',
+          calendarId: '1',
+          title: 'Coding time',
+          category: 'time',
+          dueDateClass: '',
+          start: '2022-07-20T17:30:00+09:00',
+          end: '2022-07-20T17:31:00+09:00',
+          isReadOnly: true    // schedule is read-only
+      }
+    ]);
+
+      // let count = 1;
+      // const events = [];
+
+      // for (const project in rootProject) {
+      //   for (const item of rootProject[project]) {
+      //     const tempEvent = new Schedule();
+      //     tempEvent.id = count;
+      //     tempEvent.calendarId = 1;
+      //     tempEvent.title = item.title;
+      //     tempEvent.category = 'time';
+      //     tempEvent.dueDateClass = '';
+      //     tempEvent.start = new Date(item.dueDate + ' ' + item.time);
+      //     tempEvent.end = new Date(item.dueDate + ' ' + item.time);
+      //     events.push(tempEvent);
+      //     count++;
+      //   }
+      // }
+
+      // createSchedules(events);
+
+    };
+
+    populateCalendar();
 
 
     today.addEventListener('click', () => {
