@@ -7,30 +7,28 @@ import {
   appendArchive,
   createProject,
   createItem,
-  store
-} from "./list.js";
-
+  store,
+} from './list.js';
 
 import Calendar from 'tui-calendar'; /* ES6 */
-import "tui-calendar/dist/tui-calendar.css";
+import 'tui-calendar/dist/tui-calendar.css';
 
 let currentSort = 'oldest';
 
 const display = (page) => {
-
   const sortButtons = document.querySelector('.sort-buttons');
   sortButtons.style.display = 'block';
-  
-  const projectsContainer = document.querySelector(".projects-container");
-  projectsContainer.textContent = "";
 
-  const mainContainer = document.querySelector(".main-container");
-  mainContainer.textContent = "";
+  const projectsContainer = document.querySelector('.projects-container');
+  projectsContainer.textContent = '';
 
-  const title = document.createElement("div");
+  const mainContainer = document.querySelector('.main-container');
+  mainContainer.textContent = '';
+
+  const title = document.createElement('div');
   title.setAttribute('class', 'project-title');
-  if (page === "home") {
-    title.textContent = "Tasks";
+  if (page === 'home') {
+    title.textContent = 'Tasks';
     mainContainer.appendChild(title);
   } else {
     title.textContent = page;
@@ -51,37 +49,34 @@ const display = (page) => {
     obj = rootProject;
   }
 
-
   for (const project in obj) {
-    const lineContainer = document.createElement("div");
-    lineContainer.setAttribute("class", "line-container");
+    const lineContainer = document.createElement('div');
+    lineContainer.setAttribute('class', 'line-container');
 
-    const projectTemp = document.createElement("div");
-    const countTemp = document.createElement("div");
-    const deleteIcon = document.createElement("div");
-    deleteIcon.setAttribute("class", "delete-project");
+    const projectTemp = document.createElement('div');
+    const countTemp = document.createElement('div');
+    const deleteIcon = document.createElement('div');
+    deleteIcon.setAttribute('class', 'delete-project');
     deleteIcon.innerHTML =
       '<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M6.062 15 5 13.938 8.938 10 5 6.062 6.062 5 10 8.938 13.938 5 15 6.062 11.062 10 15 13.938 13.938 15 10 11.062Z"/></svg>';
 
-    console.log(
-      `${project}: ${obj[project].color} : ${obj[project]}`
-    );
+    console.log(`${project}: ${obj[project].color} : ${obj[project]}`);
 
     let count = 0;
     for (const item of obj[project]) {
       if (item.project === page) {
-        const taskContainer = document.createElement("div");
-        taskContainer.setAttribute("class", "task-container");
+        const taskContainer = document.createElement('div');
+        taskContainer.setAttribute('class', 'task-container');
 
-        const closeTask = document.createElement("div");
+        const closeTask = document.createElement('div');
         closeTask.innerHTML =
           '<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M6.4 19 5 17.6l5.6-5.6L5 6.4 6.4 5l5.6 5.6L17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6Z"/></svg>';
 
-        const checkTask = document.createElement("div");
+        const checkTask = document.createElement('div');
         checkTask.innerHTML =
           '<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M12 22q-2.075 0-3.9-.788-1.825-.787-3.175-2.137-1.35-1.35-2.137-3.175Q2 14.075 2 12t.788-3.9q.787-1.825 2.137-3.175 1.35-1.35 3.175-2.138Q9.925 2 12 2t3.9.787q1.825.788 3.175 2.138 1.35 1.35 2.137 3.175Q22 9.925 22 12t-.788 3.9q-.787 1.825-2.137 3.175-1.35 1.35-3.175 2.137Q14.075 22 12 22Zm0-2q3.35 0 5.675-2.325Q20 15.35 20 12q0-3.35-2.325-5.675Q15.35 4 12 4 8.65 4 6.325 6.325 4 8.65 4 12q0 3.35 2.325 5.675Q8.65 20 12 20Zm0-8Z"/></svg>';
 
-        const taskTemp = document.createElement("div");
+        const taskTemp = document.createElement('div');
         taskTemp.textContent = `${item.title}, ${item.description}, ${item.dueDate}, ${item.time}, ${item.priority} priority`;
 
         taskContainer.appendChild(checkTask);
@@ -111,7 +106,7 @@ const display = (page) => {
     countTemp.textContent = count;
     lineContainer.appendChild(projectTemp);
     lineContainer.appendChild(countTemp);
-    if (project != "home") {
+    if (project != 'home') {
       lineContainer.appendChild(deleteIcon);
     }
     projectsContainer.appendChild(lineContainer);
@@ -121,22 +116,22 @@ const display = (page) => {
   taskModal.clearProjectList();
   taskModal.populateProjectList();
 
-  console.log("-------------------");
-  console.log("");
+  console.log('-------------------');
+  console.log('');
 };
 
 const displayProjectPage = () => {
-  const projectsArray = document.querySelector(".projects-container").children;
+  const projectsArray = document.querySelector('.projects-container').children;
 
   for (const div of projectsArray) {
-    div.firstChild.addEventListener("click", () => {
+    div.firstChild.addEventListener('click', () => {
       display(div.firstChild.textContent);
       displayProjectPage();
     });
 
-    if (div.firstChild.textContent != "home") {
-      const deleteTemp = div.querySelector(".delete-project");
-      deleteTemp.addEventListener("click", () => {
+    if (div.firstChild.textContent != 'home') {
+      const deleteTemp = div.querySelector('.delete-project');
+      deleteTemp.addEventListener('click', () => {
         //console.log("clicked delete");
         deleteProject(div.firstChild.textContent);
       });
@@ -148,26 +143,26 @@ const deleteProject = (name) => {
   delete rootProject[name];
   taskModal.populateProjectList();
   store();
-  display("home");
+  display('home');
   displayProjectPage();
 };
 
 const taskModal = (() => {
-  const modal = document.querySelector(".task-modal");
-  const trigger = document.querySelector(".add-task");
-  const close = document.querySelector(".close-task-button");
-  const create = document.querySelector(".create-task-button");
+  const modal = document.querySelector('.task-modal');
+  const trigger = document.querySelector('.add-task');
+  const close = document.querySelector('.close-task-button');
+  const create = document.querySelector('.create-task-button');
 
   //input values
-  const proj = document.getElementById("project-list");
-  const name = document.getElementById("task-name");
-  const description = document.getElementById("task-description");
-  const date = document.getElementById("task-date");
-  const time = document.getElementById("task-time");
-  const priority = document.getElementById("task-priority");
+  const proj = document.getElementById('project-list');
+  const name = document.getElementById('task-name');
+  const description = document.getElementById('task-description');
+  const date = document.getElementById('task-date');
+  const time = document.getElementById('task-time');
+  const priority = document.getElementById('task-priority');
 
   function toggleModal() {
-    modal.classList.toggle("show-modal");
+    modal.classList.toggle('show-modal');
   }
 
   function windowOnClick(event) {
@@ -177,29 +172,29 @@ const taskModal = (() => {
   }
 
   function clearProjectList() {
-    const list = document.getElementById("project-list");
-    list.textContent = ''; 
+    const list = document.getElementById('project-list');
+    list.textContent = '';
   }
 
   function populateProjectList() {
     //console.log('in');
-    const list = document.getElementById("project-list");
+    const list = document.getElementById('project-list');
 
     for (const project in rootProject) {
       //console.log(project);
-        const temp = document.createElement("option");
-        temp.value = project;
-        temp.textContent = project;
-        list.appendChild(temp);
+      const temp = document.createElement('option');
+      temp.value = project;
+      temp.textContent = project;
+      list.appendChild(temp);
     }
   }
   populateProjectList();
 
-  trigger.addEventListener("click", toggleModal);
-  close.addEventListener("click", toggleModal);
-  window.addEventListener("click", windowOnClick);
+  trigger.addEventListener('click', toggleModal);
+  close.addEventListener('click', toggleModal);
+  window.addEventListener('click', windowOnClick);
 
-  create.addEventListener("click", () => {
+  create.addEventListener('click', () => {
     createItem(
       proj.value,
       name.value,
@@ -211,27 +206,27 @@ const taskModal = (() => {
     display(proj.value);
     displayProjectPage();
     toggleModal();
-    proj.value = "home";
-    name.value = "";
-    description.value = "";
-    date.value = "";
-    time.value = "";
-    priority.value = "low";
+    proj.value = 'home';
+    name.value = '';
+    description.value = '';
+    date.value = '';
+    time.value = '';
+    priority.value = 'low';
   });
 
-  return {populateProjectList, clearProjectList};
+  return { populateProjectList, clearProjectList };
 })();
 
 const projectModal = () => {
-  const modal = document.querySelector(".project-modal");
-  const trigger = document.querySelector(".add-project");
-  const close = document.querySelector(".close-project-button");
-  const name = document.getElementById("project-name");
-  const color = document.getElementById("project-color");
-  const create = document.querySelector(".create-project-button");
+  const modal = document.querySelector('.project-modal');
+  const trigger = document.querySelector('.add-project');
+  const close = document.querySelector('.close-project-button');
+  const name = document.getElementById('project-name');
+  const color = document.getElementById('project-color');
+  const create = document.querySelector('.create-project-button');
 
   function toggleModal() {
-    modal.classList.toggle("show-modal");
+    modal.classList.toggle('show-modal');
   }
 
   function windowOnClick(event) {
@@ -241,30 +236,30 @@ const projectModal = () => {
   }
 
   function rePopulateProjectList(projectName) {
-    const list = document.getElementById("project-list");
+    const list = document.getElementById('project-list');
 
-    const temp = document.createElement("option");
+    const temp = document.createElement('option');
     temp.value = projectName;
     temp.textContent = projectName;
     list.appendChild(temp);
   }
 
-  trigger.addEventListener("click", toggleModal);
-  close.addEventListener("click", toggleModal);
-  window.addEventListener("click", windowOnClick);
+  trigger.addEventListener('click', toggleModal);
+  close.addEventListener('click', toggleModal);
+  window.addEventListener('click', windowOnClick);
 
-  create.addEventListener("click", () => {
+  create.addEventListener('click', () => {
     createProject(name.value, color.value);
     display(name.value);
     displayProjectPage();
     //rePopulateProjectList(name.value);
     toggleModal();
-    name.value = "";
+    name.value = '';
   });
 };
 
 const deleteTask = (project, item, div) => {
-  div.addEventListener("click", () => {
+  div.addEventListener('click', () => {
     const index = rootProject[project].indexOf(item);
     rootProject[project].splice(index, 1);
     store();
@@ -274,7 +269,7 @@ const deleteTask = (project, item, div) => {
 };
 
 const checkOffTask = (project, item, div) => {
-  div.addEventListener("click", () => {
+  div.addEventListener('click', () => {
     const index = rootProject[project].indexOf(item);
     rootProject[project].splice(index, 1);
 
@@ -286,27 +281,27 @@ const checkOffTask = (project, item, div) => {
 };
 
 const viewTaskArchive = (() => {
-  const archive = document.querySelector(".archive-button");
+  const archive = document.querySelector('.archive-button');
 
-  archive.addEventListener("click", () => {
+  archive.addEventListener('click', () => {
     const sortButtons = document.querySelector('.sort-buttons');
     sortButtons.style.display = 'none';
 
-    const mainContainer = document.querySelector(".main-container");
-    mainContainer.textContent = "";
+    const mainContainer = document.querySelector('.main-container');
+    mainContainer.textContent = '';
 
     for (let i = taskArchive.length - 1; i >= 0; i--) {
       const item = taskArchive[i];
 
-      const archiveRow = document.createElement("div");
-      archiveRow.setAttribute("class", "archive-row");
+      const archiveRow = document.createElement('div');
+      archiveRow.setAttribute('class', 'archive-row');
 
-      const projectTemp = document.createElement("div");
+      const projectTemp = document.createElement('div');
       projectTemp.textContent = item.project;
       //console.log(item.color);
       projectTemp.style.backgroundColor = colorStorage[item.project];
 
-      const taskTemp = document.createElement("div");
+      const taskTemp = document.createElement('div');
       taskTemp.textContent = `${item.title}, ${item.description}, ${item.dueDate}, ${item.time}, ${item.priority} priority`;
 
       archiveRow.appendChild(projectTemp);
@@ -317,25 +312,24 @@ const viewTaskArchive = (() => {
 })();
 
 const deleteProjectListener = (() => {
-  const projectsArray = document.querySelector(".projects-container").children;
+  const projectsArray = document.querySelector('.projects-container').children;
 
   document
-    .querySelector(".delete-project-button")
-    .addEventListener("click", () => {
+    .querySelector('.delete-project-button')
+    .addEventListener('click', () => {
       for (const div of projectsArray) {
         const x = div.lastChild;
 
-        if (x.style.display === "block") {
-          x.style.display = "none";
+        if (x.style.display === 'block') {
+          x.style.display = 'none';
         } else {
-          x.style.display = "block";
+          x.style.display = 'block';
         }
       }
     });
 })();
 
 const sortOldestListener = (() => {
-
   document.querySelector('.sort-oldest').addEventListener('click', () => {
     currentSort = 'oldest';
 
@@ -348,11 +342,9 @@ const sortOldestListener = (() => {
     display(title);
     displayProjectPage();
   });
-
 })();
 
 const sortDateListener = (() => {
-
   document.querySelector('.sort-date').addEventListener('click', () => {
     currentSort = 'date';
 
@@ -365,11 +357,9 @@ const sortDateListener = (() => {
     display(title);
     displayProjectPage();
   });
-
 })();
 
 const sortPriorityListener = (() => {
-
   document.querySelector('.sort-priority').addEventListener('click', () => {
     currentSort = 'priority';
 
@@ -382,15 +372,13 @@ const sortPriorityListener = (() => {
     display(title);
     displayProjectPage();
   });
-
 })();
 
 const sortByDate = () => {
   sortedDateProject = structuredClone(rootProject);
 
   for (const project in sortedDateProject) {
-    
-    sortedDateProject[project].sort(function(a,b) {
+    sortedDateProject[project].sort(function (a, b) {
       const dateA = new Date(a.dueDate + ' ' + a.time);
       //console.log(dateA);
       const dateB = new Date(b.dueDate + ' ' + b.time);
@@ -398,15 +386,13 @@ const sortByDate = () => {
       return dateA - dateB;
     });
   }
-
 };
 
 const sortByPriority = () => {
   sortedPriorityProject = structuredClone(rootProject);
 
   for (const project in sortedPriorityProject) {
-    
-    sortedPriorityProject[project].sort(function(a,b) {
+    sortedPriorityProject[project].sort(function (a, b) {
       let priorityA = a.priority;
       let priorityB = b.priority;
 
@@ -433,16 +419,14 @@ const sortByPriority = () => {
       return priorityA - priorityB;
     });
   }
-
 };
 
 const viewCalendar = (() => {
-
   const calendar = document.querySelector('.calendar-button');
 
   calendar.addEventListener('click', () => {
-    const mainContainer = document.querySelector(".main-container");
-    mainContainer.textContent = "";
+    const mainContainer = document.querySelector('.main-container');
+    mainContainer.textContent = '';
 
     const sortButtons = document.querySelector('.sort-buttons');
     sortButtons.style.display = 'none';
@@ -458,7 +442,7 @@ const viewCalendar = (() => {
     backWeek.textContent = 'Back';
 
     const forwardWeek = document.createElement('button');
-    forwardWeek.textContent = 'Forward'
+    forwardWeek.textContent = 'Forward';
 
     const monthView = document.createElement('button');
     monthView.textContent = 'Month View';
@@ -477,7 +461,6 @@ const viewCalendar = (() => {
     calDiv.appendChild(monthTitle);
     mainContainer.appendChild(calDiv);
 
-
     const calendar = new Calendar('#calendar', {
       defaultView: 'week',
       isReadOnly: true,
@@ -494,11 +477,13 @@ const viewCalendar = (() => {
           let minutes = start._date.getMinutes();
 
           if (minutes === 0) {
-            minutes = '00'
+            minutes = '00';
           }
 
-          console.log(document.querySelector('.tui-full-calendar-time-schedule'));
-    
+          console.log(
+            document.querySelector('.tui-full-calendar-time-schedule')
+          );
+
           return `<div style="color: white;background-color: ${color}; margin-left:-3px;margin-top:-2px;padding-bottom:2px;padding-top:2px;padding-left:5px;">${start._date.getHours()}:${minutes} ${title}</div>`;
         },
         allday(event) {
@@ -520,7 +505,6 @@ const viewCalendar = (() => {
     });
 
     const populateCalendar = () => {
-
       let count = 1;
       const events = [];
 
@@ -541,11 +525,9 @@ const viewCalendar = (() => {
       }
 
       calendar.createSchedules(events);
-
     };
 
     populateCalendar();
-
 
     today.addEventListener('click', () => {
       calendar.today();
@@ -575,10 +557,9 @@ const viewCalendar = (() => {
     });
 
     const setMonthTitle = () => {
-
       const month = calendar.getDate().getMonth();
       const year = calendar.getDate().getFullYear();
-      
+
       switch (month) {
         case 0:
           monthTitle.textContent = `January ${year}`;
@@ -619,12 +600,7 @@ const viewCalendar = (() => {
     };
 
     setMonthTitle();
-
-
-    
-
   });
-  
 })();
 
 export { display, projectModal, taskModal, displayProjectPage };

@@ -13,7 +13,13 @@ body {
 
 .header {
     grid-column: span 2;
-    background-color: red;
+    background-color: rgb(132, 57, 218);
+    display: flex;
+    gap: 10px;
+}
+
+.archive-button {
+    margin-left: auto;
 }
 
 .sidebar {

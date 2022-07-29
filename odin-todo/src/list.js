@@ -1,9 +1,11 @@
 //import {compareAsc} from 'date-fns';
 
-let rootProject = JSON.parse(localStorage.getItem('rootProject')) || { home: [] };
+let rootProject = JSON.parse(localStorage.getItem('rootProject')) || {
+  home: [],
+};
 let taskArchive = JSON.parse(localStorage.getItem('taskArchive')) || [];
-let sortedDateProject = {home : []};
-let sortedPriorityProject = {home : []};
+let sortedDateProject = { home: [] };
+let sortedPriorityProject = { home: [] };
 let colorStorage = JSON.parse(localStorage.getItem('colorStorage')) || {};
 
 const store = () => {
@@ -43,4 +45,14 @@ const appendArchive = (item) => {
   store();
 };
 
-export { rootProject, taskArchive, sortedDateProject, sortedPriorityProject, colorStorage, appendArchive, createProject, createItem, store };
+export {
+  rootProject,
+  taskArchive,
+  sortedDateProject,
+  sortedPriorityProject,
+  colorStorage,
+  appendArchive,
+  createProject,
+  createItem,
+  store,
+};
