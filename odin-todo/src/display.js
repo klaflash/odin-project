@@ -702,4 +702,10 @@ const viewCalendar = (() => {
   });
 })();
 
+const logoListener = (() => {
+  document.querySelector('.logo').addEventListener('click', () => {
+    display('home');
+  });
+})();
+
 export { display, projectModal, taskModal, displayProjectPage };
