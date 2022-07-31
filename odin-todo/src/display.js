@@ -14,6 +14,10 @@ import Calendar from 'tui-calendar'; /* ES6 */
 import 'tui-calendar/dist/tui-calendar.css';
 
 let currentSort = 'oldest';
+const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
 
 const display = (page) => {
   const sortButtons = document.querySelector('.sort-buttons');
@@ -54,7 +58,9 @@ const display = (page) => {
     lineContainer.setAttribute('class', 'line-container');
 
     const projectTemp = document.createElement('div');
+    projectTemp.setAttribute('class', 'project-name')
     const countTemp = document.createElement('div');
+    countTemp.setAttribute('class', 'project-count');
     const deleteIcon = document.createElement('div');
     deleteIcon.setAttribute('class', 'delete-project');
     deleteIcon.innerHTML =
@@ -68,20 +74,89 @@ const display = (page) => {
         const taskContainer = document.createElement('div');
         taskContainer.setAttribute('class', 'task-container');
 
+        const closeTaskCont = document.createElement('div');
+        closeTaskCont.setAttribute('class', 'close-task-container');
         const closeTask = document.createElement('div');
+        closeTask.setAttribute('class', 'close-task');
         closeTask.innerHTML =
           '<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M6.4 19 5 17.6l5.6-5.6L5 6.4 6.4 5l5.6 5.6L17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6Z"/></svg>';
 
+        closeTaskCont.appendChild(closeTask)
+
         const checkTask = document.createElement('div');
+        checkTask.setAttribute('class', 'check-task');
         checkTask.innerHTML =
           '<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M12 22q-2.075 0-3.9-.788-1.825-.787-3.175-2.137-1.35-1.35-2.137-3.175Q2 14.075 2 12t.788-3.9q.787-1.825 2.137-3.175 1.35-1.35 3.175-2.138Q9.925 2 12 2t3.9.787q1.825.788 3.175 2.138 1.35 1.35 2.137 3.175Q22 9.925 22 12t-.788 3.9q-.787 1.825-2.137 3.175-1.35 1.35-3.175 2.137Q14.075 22 12 22Zm0-2q3.35 0 5.675-2.325Q20 15.35 20 12q0-3.35-2.325-5.675Q15.35 4 12 4 8.65 4 6.325 6.325 4 8.65 4 12q0 3.35 2.325 5.675Q8.65 20 12 20Zm0-8Z"/></svg>';
 
         const taskTemp = document.createElement('div');
-        taskTemp.textContent = `${item.title}, ${item.description}, ${item.dueDate}, ${item.time}, ${item.priority} priority`;
+        taskTemp.setAttribute('class', 'task-middle');
+        const taskTitle = document.createElement('div');
+        taskTitle.setAttribute('class', 'task-title');
+        taskTitle.textContent = item.title;
+        const taskDescription = document.createElement('div');
+        taskDescription.setAttribute('class', 'task-description');
+        taskDescription.textContent = item.description;
+        
+        taskTemp.appendChild(taskTitle);
+        taskTemp.appendChild(taskDescription);
 
-        taskContainer.appendChild(checkTask);
-        taskContainer.appendChild(taskTemp);
-        taskContainer.appendChild(closeTask);
+        const taskFooter = document.createElement('div');
+        taskFooter.setAttribute('class', 'task-footer');
+
+        const footerDate = document.createElement('div');
+        footerDate.setAttribute('class', 'footer-date');
+
+        console.log(item.dueDate);
+        //console.log(item.time);
+
+        if(item.dueDate === '' && item.time != undefined) {
+          item.dueDate = '1999-01-01';
+        }
+
+        const d = new Date(item.dueDate + " " + item.time);
+  
+        if (d.getFullYear() == '1999' && d.getMonth() == '0' && !isNaN(d.getHours())) {
+            const suffix = d.getHours() <= 12 ? "PM":"AM"; 
+            let hours = ((d.getTime() + 11) % 12 + 1);
+            let minutes = d.getMinutes();
+            if (minutes < 10) {
+              minutes = '0' + minutes;
+            }
+            footerDate.textContent = `${hours}:${minutes} ${suffix}`;
+        } else if (!isNaN(d.getDate()) && !isNaN(d.getMinutes())) {
+            const suffix = d.getHours() <= 12 ? "PM":"AM"; 
+            let hours = ((d.getTime() + 11) % 12 + 1);
+            let minutes = d.getMinutes();
+            if (minutes < 10) {
+              minutes = '0' + minutes;
+            }
+            footerDate.textContent = `${monthNames[d.getMonth()]} ${d.getDate()} ${d.getFullYear()} | ${hours}:${minutes} ${suffix}`;
+        }
+
+        const footerPriority = document.createElement('div');
+        footerPriority.setAttribute('class', 'footer-priority');
+        footerPriority.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M5 21V4h9l.4 2H20v10h-7l-.4-2H7v7Zm7.5-11Zm2.15 4H18V8h-5.25l-.4-2H7v6h7.25Z"/></svg>';
+
+        if (item.priority === 'low') {
+          footerPriority.style.backgroundColor = 'lightblue';
+        } else if (item.priority === 'medium') {
+          footerPriority.style.backgroundColor = 'orange';
+        } else if (item.priority === 'high') {
+          footerPriority.style.backgroundColor = 'red'
+        }
+
+        taskFooter.appendChild(footerDate);
+        taskFooter.appendChild(footerPriority);
+
+        const middleCont = document.createElement('div');
+        middleCont.setAttribute('class', 'middle-container');
+
+        middleCont.appendChild(checkTask);
+        middleCont.appendChild(taskTemp);
+
+        taskContainer.appendChild(closeTaskCont);
+        taskContainer.appendChild(middleCont);
+        taskContainer.appendChild(taskFooter);
         mainContainer.appendChild(taskContainer);
 
         deleteTask(item.project, item, closeTask);
@@ -302,7 +377,15 @@ const viewTaskArchive = (() => {
       projectTemp.style.backgroundColor = colorStorage[item.project];
 
       const taskTemp = document.createElement('div');
-      taskTemp.textContent = `${item.title}, ${item.description}, ${item.dueDate}, ${item.time}, ${item.priority} priority`;
+
+      const d = new Date(item.dueDate + " " + item.time);
+
+      if (d.getFullYear() == '1999' && d.getMonth() == '0') {
+        taskTemp.textContent = `${item.title}, ${item.description}, ${item.time}, ${item.priority} priority`;
+      } else {
+        taskTemp.textContent = `${item.title}, ${item.description}, ${item.dueDate}, ${item.time}, ${item.priority} priority`;
+      }
+      
 
       archiveRow.appendChild(projectTemp);
       archiveRow.appendChild(taskTemp);
@@ -433,31 +516,40 @@ const viewCalendar = (() => {
 
     const calDiv = document.createElement('div');
     calDiv.setAttribute('id', 'calendar');
-    calDiv.style.height = '700px';
+    calDiv.style.height = '650px';
+
+    const calButtons = document.createElement('div');
+    calButtons.setAttribute('class', 'cal-buttons');
 
     const today = document.createElement('button');
+    today.setAttribute('class', 'today');
     today.textContent = 'Today';
 
     const backWeek = document.createElement('button');
-    backWeek.textContent = 'Back';
+    backWeek.setAttribute('class', 'back-week');
+    backWeek.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" height="30" width="30"><path d="M23.375 30 13.333 19.958l10.042-10 1.958 1.959-8.041 8.041 8.041 8.084Z"/></svg>';
 
     const forwardWeek = document.createElement('button');
-    forwardWeek.textContent = 'Forward';
+    forwardWeek.setAttribute('class', 'forward-week');
+    forwardWeek.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" height="30" width="30"><path d="m15.625 30-1.958-1.958 8.041-8.084-8.041-8.041 1.958-1.959 10.042 10Z"/></svg>';
 
     const monthView = document.createElement('button');
+    monthView.setAttribute('class', 'month-view')
     monthView.textContent = 'Month View';
 
     const weekView = document.createElement('button');
+    weekView.setAttribute('class', 'week-view');
     weekView.textContent = 'Week View';
 
     const monthTitle = document.createElement('div');
     monthTitle.setAttribute('class', 'month-title');
 
-    calDiv.appendChild(today);
-    calDiv.appendChild(backWeek);
-    calDiv.appendChild(forwardWeek);
-    calDiv.appendChild(monthView);
-    calDiv.appendChild(weekView);
+    calButtons.appendChild(today);
+    calButtons.appendChild(backWeek);
+    calButtons.appendChild(forwardWeek);
+    calButtons.appendChild(monthView);
+    calButtons.appendChild(weekView);
+    calDiv.appendChild(calButtons);
     calDiv.appendChild(monthTitle);
     mainContainer.appendChild(calDiv);
 
@@ -514,10 +606,17 @@ const viewCalendar = (() => {
           tempEvent.id = count;
           tempEvent.calendarId = 1;
           tempEvent.title = item.title;
-          tempEvent.category = 'time';
+          
           tempEvent.dueDateClass = '';
-          tempEvent.start = new Date(item.dueDate + ' ' + item.time);
-          tempEvent.end = new Date(item.dueDate + ' ' + item.time);
+
+          let d = new Date(item.dueDate + " " + item.time);
+          if (d.getFullYear() == '1999' && d.getMonth() == '0') {
+            tempEvent.category = 'allday'
+          } else {
+            tempEvent.category = 'time';
+            tempEvent.start = d;
+            tempEvent.end = d;
+          }
           tempEvent.color = colorStorage[project];
           events.push(tempEvent);
           count++;

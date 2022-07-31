@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    background-origin: border-box;
+    box-sizing: border-box;
 }
 
 body {
@@ -9,6 +9,15 @@ body {
     grid-template-columns: 1fr 4fr;
     grid-template-rows: 50px 1fr;
     height: 100vh;
+    background-color: #eeeeee;
+}
+
+button {
+    padding: 5px 15px;
+    cursor: pointer;
+    background: none;
+    border: 2px solid rgb(46, 46, 46);
+    border-radius: 10px;
 }
 
 .header {
@@ -24,11 +33,15 @@ body {
 
 .sidebar {
     grid-row: 2 / 3;
-    background-color: #d3d3d3;
+    background-color:white;
+    margin: 1rem;
+    border-radius: 10px;
 }
 
 .main {
-    grid-row: 2 / 3; 
+    grid-row: 2 / 3;
+    background-color:#eeeeee; 
+    padding: 2rem 4rem;
 }
 
 .project-modal {
@@ -139,9 +152,56 @@ body {
     gap: 20px;
 }
 
+.projects-title {
+    font-size: 22px;
+}
+
+.projects-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    padding-left: 1.5rem;
+}
+
+.project-buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    padding-bottom: 1rem;
+}
+
+.add-project {
+    margin-left: auto;
+    padding: 0;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: none;
+}
+
+.add-project:hover {
+    background-color: #d3d3d3;
+}
+
+.delete-project-button {
+    padding: 0;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: none;
+}
+
+.delete-project-button:hover {
+    background-color: #d3d3d3;
+}
+
 .line-container {
     display: flex;
-    gap: 20px;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .delete-project {
@@ -165,3 +225,170 @@ body {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
 }
+
+.cal-buttons {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.month-view {
+    margin-left: auto;
+}
+
+.month-title{
+    text-align: center;
+    font-size: 30px;
+    margin-top: -23px;
+}
+
+.project-name {
+    cursor: pointer;
+    font-size: 16px;
+    padding: 4px 40px;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.project-name:hover {
+    font-size: 17px;
+    padding: 5px 43px;
+}
+
+.project-count {
+    padding-right: 18px;
+}
+
+.project-title {
+    padding-top: 1rem;
+    font-size: 26px;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+} 
+
+.task-container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 75%;
+    gap: 0;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+}
+
+.close-task-container {
+    display: flex;
+    width: 100%;
+    padding-top: 10px;
+    padding-right: 20px;
+    justify-content: end;
+    
+}
+
+.close-task {
+    cursor: pointer;
+    display: flex;
+    border-radius: 5px;
+}
+
+.close-task:hover {
+    background-color: lightgray;
+}
+
+.check-task {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25px;
+    border-radius: 50%;
+}
+
+.check-task:hover {
+    background-color: rgb(106, 182, 76);
+}
+
+.middle-container {
+    display: flex;
+    width: 100%;
+    justify-content: start;
+    padding-left: 10%;
+    gap: 5%;
+}
+
+.task-footer {
+    display: flex;
+    width: 100%;
+    justify-content: end;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 10px;
+    padding-right: 20px;
+}
+
+.footer-priority {
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+.task-title {
+    font-size: 22px;
+}
+
+.sort-oldest, .sort-date, .sort-priority {
+    padding: 3px 9px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.sort-oldest:hover {
+    background-color: lightgray;
+}
+
+.sort-date:hover {
+    background-color: lightgray;
+}
+
+.sort-priority:hover {
+    background-color: lightgray;
+}
+
+.delete-project {
+    margin-right: 5px;
+    border-radius: 5px;
+}
+
+.delete-project:hover {
+    background-color: lightgrey;
+}
+
+.back-week, .forward-week {
+    padding: 0;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    border-radius: 50%;
+    border: none;
+}
+
+.back-week:hover {
+    background-color: lightgray;
+}
+
+.forward-week:hover {
+    background-color: lightgray;
+}
+
+.today:hover {
+    background-color: lightgrey;
+}
+
+.month-view:hover {
+    font-size: 14px;
+}
+
+.week-view:hover {
+    font-size: 14px;
+}
+
+
