@@ -5,6 +5,11 @@ Coding projects from The Odin Project JavaScript courses
 <br/>
 <br/>
 
+## 📁 [odin-todo](https://klaflash.github.io/odin-project/odin-todo/dist/index.html)
+To-do list with built in weekly and monthly calendars. Persistent data stored in local storage.
+<br/>
+<br/>
+
 ## 📁 [odin-restaurant](https://klaflash.github.io/odin-project/odin-restaurant/dist/index.html)
 Dynamically rendered mock restaurant home page.
 <br/>
