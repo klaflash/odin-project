@@ -3,3 +3,71 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+.header {
+    display: flex;
+    height: 8vh;
+    background-color: #88bef5;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+#country {
+    -webkit-appearance: menulist-button;
+    height: 4.5vh;
+    width: 5vw;
+    border: none;
+    border-radius: 20px;
+    background-color: rgb(201, 201, 201);
+}
+
+#location {
+    height: 4.5vh;
+    width: 40rem;
+    border-radius: 20px;
+    padding: 1rem;
+    padding-left: 2rem;
+    border: none;
+}
+
+#go {
+    padding: 0.7rem 1.5rem;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(201, 201, 201);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 3rem;
+    width: 30vw;
+    background-color:lightgrey;
+    border-radius: 10px;
+}
+
+.hl {
+    display: flex;
+    gap: 1rem;
+}
+
+.feel, .humidity, .wind {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    width: 30vw;
+    background-color:lightgrey;
+    border-radius: 10px;
+}

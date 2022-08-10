@@ -9,10 +9,9 @@
 </head>
 <body>
 
-    <div class="container">
-        <label for="country">Country</label>
+    <div class="header">
         <select name="country" class="form-control" id="country">
-            <option value="0" label="Select a country ... " selected="selected">Select a country ... </option>
+            <option value="0" label="Country" selected="selected">Country</option>
             <optgroup id="country-optgroup-Africa" label="Africa">
                 <option value="DZ" label="Algeria">Algeria</option>
                 <option value="AO" label="Angola">Angola</option>
@@ -277,10 +276,12 @@
             </optgroup>
         </select>
 
-        <label for="location">Location</label>
-
         <input type="text" id="location" placeholder="Zip/post code">
         <button type="submit" id="go">Go</button>
+    </div>
+
+    <div class="container">
+        
     </div>
     
 </body>

@@ -32,16 +32,22 @@ async function getCordinates(country, location) {
 function process(json) {
 
     let weather = {
-        currentTemp: json.main.temp,
-        feelsLike: json.main.feels_like,
-        low: json.main.temp_min,
-        high: json.main.temp_max,
+        currentTemp: kelvinToF(json.main.temp),
+        feelsLike: kelvinToF(json.main.feels_like),
+        low: kelvinToF(json.main.temp_min),
+        high: kelvinToF(json.main.temp_max),
         humidity: json.main.humidity,
         description: json.weather[0].description,
-        wind: json.wind.speed
+        wind: Math.round(json.wind.speed * 2.237),
+        name: json.name
     }
 
     console.log(weather);
+    dispay(weather);
+}
+
+function kelvinToF(k) {
+    return Math.round((k - 273.15) * (9/5) + 32);
 }
 
 const listen = (() => {
@@ -60,6 +66,49 @@ const listen = (() => {
 })();
 
 
-function dispay() {
+function dispay(obj) {
 
+
+    const container = document.querySelector('.container');
+
+    const main = document.createElement('div');
+    main.setAttribute('class', 'main');
+
+    const name = document.createElement('div');
+    name.textContent = obj.name;
+    const cTemp = document.createElement('div');
+    cTemp.textContent = obj.currentTemp;
+    const description = document.createElement('div');
+    description.textContent = obj.description;
+
+    const hl = document.createElement('div');
+    hl.setAttribute('class', 'hl');
+    const high = document.createElement('div');
+    high.textContent = `H:${obj.high}`;
+    const low = document.createElement('div');
+    low.textContent = `L:${obj.low}`;
+    hl.appendChild(high);
+    hl.appendChild(low);
+
+    main.appendChild(name);
+    main.appendChild(cTemp);
+    main.appendChild(description);
+    main.appendChild(hl);
+
+    const feel = document.createElement('div');
+    feel.setAttribute('class', 'feel');
+    feel.textContent = `Feels like ${obj.feelsLike}`;
+
+    const humidity = document.createElement('div');
+    humidity.setAttribute('class', 'humidity');
+    humidity.textContent = `${obj.humidity}% humidity`;
+
+    const wind = document.createElement('div');
+    wind.setAttribute('class', 'wind');
+    wind.textContent = `Wind ${obj.wind} mph`;
+
+    container.appendChild(main);
+    container.appendChild(feel);
+    container.appendChild(humidity);
+    container.appendChild(wind);
 }
