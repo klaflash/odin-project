@@ -5,6 +5,11 @@ Coding projects from The Odin Project JavaScript courses
 <br/>
 <br/>
 
+## 📁 [odin-weather](https://klaflash.github.io/odin-project/odin-weather)
+Displays global weather data based on postal code. Uses OpenWeather API.
+<br/>
+<br/>
+
 ## 📁 [odin-todo](https://klaflash.github.io/odin-project/odin-todo/dist/index.html)
 To-do list with built in weekly and monthly calendars. Persistent data stored in local storage.
 <br/>
