@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Manrope, sans-serif;
 }
 
 .header {
@@ -13,13 +14,20 @@
     gap: 2rem;
 }
 
+.title {
+    position: absolute;
+    left: 0;
+    padding-left: 1rem;
+    font-size: 30px;
+}
+
 #country {
     -webkit-appearance: menulist-button;
     height: 4.5vh;
     width: 5vw;
     border: none;
-    border-radius: 20px;
-    background-color: rgb(201, 201, 201);
+    border-radius: 5px;
+    background-color: rgb(233, 233, 233);
 }
 
 #location {
@@ -35,14 +43,17 @@
     padding: 0.7rem 1.5rem;
     border-radius: 5px;
     border: none;
-    background-color: rgb(201, 201, 201);
+    background-color: rgb(233, 233, 233);
 }
 
 .container {
     display: flex;
     flex-direction: column;
+    height: 92vh;
     align-items: center;
+    justify-content: center;
     gap: 1rem;
+    background-color: #a5cef7;
 }
 
 .main {
@@ -50,10 +61,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
     padding: 3rem;
     width: 30vw;
-    background-color:lightgrey;
+    background-color: rgb(233, 233, 233);
     border-radius: 10px;
 }
 
@@ -68,6 +79,14 @@
     align-items: center;
     padding: 2rem;
     width: 30vw;
-    background-color:lightgrey;
+    background-color: rgb(233, 233, 233);
     border-radius: 10px;
+}
+
+.name {
+    font-size: 28px;
+}
+
+.current {
+    font-size: 80px;
 }

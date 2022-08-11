@@ -10,6 +10,15 @@ async function getData(cordinates) {
         console.log(data);
         process(data);
     } catch (err) {
+        const container = document.querySelector('.container');
+        container.textContent = '';
+
+        const message = document.createElement('div');
+        message.setAttribute('class', 'message');
+        message.textContent = 'Please select a country and enter a valid postal code';
+
+        container.appendChild(message);
+
         console.error(err);
     }
 
@@ -71,12 +80,16 @@ function dispay(obj) {
 
     const container = document.querySelector('.container');
 
+    container.textContent = '';
+
     const main = document.createElement('div');
     main.setAttribute('class', 'main');
 
     const name = document.createElement('div');
+    name.setAttribute('class', 'name');
     name.textContent = obj.name;
     const cTemp = document.createElement('div');
+    cTemp.setAttribute('class', 'current');
     cTemp.textContent = obj.currentTemp;
     const description = document.createElement('div');
     description.textContent = obj.description;
